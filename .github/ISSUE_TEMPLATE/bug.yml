@@ -1,0 +1,87 @@
+name: Bug report
+description: Something the rig does that the spec says it shouldn't, or vice versa.
+title: "bug: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for filing a bug. Before submitting, please:
+
+        - Search existing issues to avoid duplicates.
+        - If this is a **security** issue, do not file here. See [SECURITY.md](../../SECURITY.md).
+        - If this is a **design disagreement**, write a counter-ADR instead. See [CONTRIBUTING.md](../../CONTRIBUTING.md).
+
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+      description: Output of `git rev-parse HEAD` or the released version you're on.
+      placeholder: "e.g., 0.1.0 or 13534d5"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: package
+    attributes:
+      label: Which package?
+      multiple: true
+      options:
+        - rigging-core
+        - rigging-identity
+        - rigging-trace
+        - rigging-adapters
+        - rigging-runtime
+        - cli (rig)
+        - benchmarks
+        - docs / specs
+        - site (GitHub Pages)
+        - unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What did you expect the rig to do? Quote the spec or ADR if relevant.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What did it do instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: A short script (or example reference) that reproduces the issue.
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: trace
+    attributes:
+      label: Trace / blame chain (if applicable)
+      description: Paste the relevant span(s) and/or output of `rig trace inspect`.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Python version, OS, anything relevant.
+      placeholder: |
+        Python: 3.12.5
+        OS: Ubuntu 24.04
+        Adapter: LocalPythonAdapter
+    validations:
+      required: false

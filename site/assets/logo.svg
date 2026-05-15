@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Rigging logo">
+  <defs>
+    <linearGradient id="hull" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#0b1220"/>
+    </linearGradient>
+    <linearGradient id="sail" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e7eaf0"/>
+      <stop offset="100%" stop-color="#9ca3af"/>
+    </linearGradient>
+    <linearGradient id="sail2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="120" cy="120" r="118" fill="#0b1220"/>
+  <circle cx="120" cy="120" r="116" fill="url(#halo)"/>
+
+  <!-- water line -->
+  <path d="M0 178 Q60 170 120 178 T240 178 L240 240 L0 240 Z" fill="#0e7490" opacity="0.35"/>
+  <path d="M0 184 Q60 178 120 184 T240 184" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.5"/>
+
+  <!-- main mast -->
+  <line x1="120" y1="38" x2="120" y2="178" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+  <!-- crow's nest -->
+  <circle cx="120" cy="44" r="4" fill="#f59e0b"/>
+
+  <!-- sails -->
+  <path d="M120 56 L74 130 L120 130 Z" fill="url(#sail)" stroke="#cbd5e1" stroke-width="1"/>
+  <path d="M120 56 L166 130 L120 130 Z" fill="url(#sail2)" stroke="#475569" stroke-width="1"/>
+  <path d="M120 132 L88 168 L120 168 Z" fill="url(#sail)" stroke="#cbd5e1" stroke-width="1" opacity="0.9"/>
+  <path d="M120 132 L152 168 L120 168 Z" fill="url(#sail2)" stroke="#475569" stroke-width="1" opacity="0.9"/>
+
+  <!-- rigging lines -->
+  <g stroke="#38bdf8" stroke-width="1" opacity="0.8">
+    <line x1="120" y1="50" x2="74" y2="130"/>
+    <line x1="120" y1="50" x2="166" y2="130"/>
+    <line x1="120" y1="50" x2="88" y2="168"/>
+    <line x1="120" y1="50" x2="152" y2="168"/>
+    <line x1="120" y1="50" x2="58" y2="172"/>
+    <line x1="120" y1="50" x2="182" y2="172"/>
+  </g>
+
+  <!-- hull -->
+  <path d="M50 172 Q120 198 190 172 L172 192 Q120 210 68 192 Z" fill="url(#hull)" stroke="#334155" stroke-width="1.5"/>
+</svg>

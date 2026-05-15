@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rigging — typed coupling for harnessed agents</title>
+  <meta name="description" content="Rigging is the typed, trust-bearing, schema-mediated coupling layer that composes heterogeneous harnessed agents into a single coherent system." />
+  <meta property="og:title" content="Rigging — for the fleet" />
+  <meta property="og:description" content="If Harness is for one agent, Rigging is for the fleet. Signed cards. Delegation contracts. Blame chains." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/og.svg" />
+  <meta name="theme-color" content="#020617" />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-row">
+    <a class="brand" href="#top">
+      <img src="./assets/logo.svg" alt="" width="28" height="28" />
+      <span>rigging</span>
+      <span class="badge-inline">v0</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#why">Why</a>
+      <a href="#how">How</a>
+      <a href="#explorer">Live trace</a>
+      <a href="#examples">Examples</a>
+      <a href="#bench">Benchmarks</a>
+      <a href="#compare">vs.</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta" href="https://github.com/the-rigging-authors/rigging" target="_blank" rel="noopener">GitHub →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">Reference implementation · Apache-2.0 · Python 3.12+</p>
+      <h1>If <em>Harness</em> is for one agent,<br/><span class="grad">Rigging</span> is for the fleet.</h1>
+      <p class="lede">
+        The typed, trust-bearing, schema-mediated coupling layer that composes
+        heterogeneous harnessed agents into a single coherent system.
+        Signed cards. Delegation contracts. Mechanical blame.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/the-rigging-authors/rigging" target="_blank" rel="noopener">★ Star on GitHub</a>
+        <a class="btn btn-ghost" href="#explorer">See a live trace ↓</a>
+      </div>
+      <div class="install">
+        <code><span class="prompt">$</span> pip install rigging<span class="cursor">▌</span></code>
+        <button class="copy" data-copy="pip install rigging" title="Copy">Copy</button>
+      </div>
+      <ul class="hero-stats">
+        <li><strong>5</strong>packages</li>
+        <li><strong>76</strong>tests</li>
+        <li><strong>10</strong>ADRs</li>
+        <li><strong>4</strong>specs</li>
+        <li><strong>0</strong>LLM code in core</li>
+      </ul>
+    </div>
+    <div class="hero-art">
+      <img src="./assets/hero.svg" alt="A tall ship at night. The rigging is the load-bearing web that translates wind into motion." />
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<section class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · </span>
+    <span>cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · </span>
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section id="why" class="band">
+  <div class="container">
+    <p class="eyebrow">Why this layer needs a name</p>
+    <h2>You are open-coding it already.</h2>
+    <div class="why-grid">
+      <article class="why-card">
+        <h3>Before <code>route_to_agent()</code></h3>
+        <pre><code><span class="cmt"># prod-grade glue, every team writes it differently</span>
+trace_id = uuid()
+contract = {"caller": "planner", "callee": callee}
+try:
+    out = await callee.run(req)
+except Exception:
+    out = await fallback.run(req)  <span class="cmt"># silent swap</span>
+cost[caller] += out.cost  <span class="cmt"># 🤞</span>
+return out</code></pre>
+      </article>
+      <article class="why-card good">
+        <h3>With Rigging</h3>
+<pre><code>result = await rig.call(
+    caller=planner,
+    callee_did=worker.did,
+    capability=<span class="str">"translate_pdf"</span>,
+    input={<span class="str">"uri"</span>: <span class="str">"s3://…"</span>},
+    cost_budget=(<span class="str">"usd"</span>, <span class="str">"0.50"</span>),
+    verifier=quality.did,
+)</code></pre>
+      </article>
+    </div>
+    <p class="muted small">
+      Every multi-agent stack ships a <code>route_to_agent</code> that
+      reinvents identity, contracts, budgets, and retries — incorrectly,
+      inconsistently, and invisibly. Rigging makes the invisible layer
+      a typed primitive.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== THREE PRIMITIVES ===================== -->
+<section id="how" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">The three primitives a rig refuses to live without</p>
+    <h2>Cards. Contracts. Blame.</h2>
+    <img class="full" src="./assets/three-primitives.svg" alt="Signed agent cards, delegation contracts, blame chains" />
+    <details class="prose">
+      <summary>Read the long-form essay (≈2k words)</summary>
+      <p>
+        A rig is a runtime that does three things, and refuses to do anything
+        else. It makes capability advertisements explicit. It makes delegation
+        contracts explicit. It makes blame attribution mechanical. Everything
+        else in a rig exists to keep those three primitives honest.
+      </p>
+      <p>
+        The most important discipline a rig enforces is <em>refusing to
+        silently fix things</em>. A friendly system absorbs partial failure
+        and gives the caller a working answer. A friendly system also
+        destroys the chain of evidence that blame attribution depends on.
+        <a href="https://github.com/the-rigging-authors/rigging/blob/main/CONCEPT.md">Keep reading →</a>
+      </p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== LIVE TRACE EXPLORER ===================== -->
+<section id="explorer" class="band">
+  <div class="container">
+    <p class="eyebrow">Interactive · click any scenario</p>
+    <h2>Walk a real blame chain.</h2>
+    <p class="muted">
+      Pick a failure mode. The runtime emits a signed envelope per step;
+      the extractor walks the DAG backwards until it finds the proximate
+      cause. No guesswork.
+    </p>
+
+    <div class="explorer">
+      <aside class="explorer-side">
+        <button class="scenario active" data-scenario="happy">
+          <span class="dot ok"></span> Happy path · planner → worker → verify ✓
+        </button>
+        <button class="scenario" data-scenario="adversarial">
+          <span class="dot bad"></span> Adversarial worker · verifier rejects
+        </button>
+        <button class="scenario" data-scenario="budget">
+          <span class="dot warn"></span> Budget overrun on subcontract
+        </button>
+        <button class="scenario" data-scenario="expired">
+          <span class="dot warn"></span> Contract expired mid-execute
+        </button>
+        <button class="scenario" data-scenario="forged">
+          <span class="dot bad"></span> Forged signature on output envelope
+        </button>
+      </aside>
+
+      <div class="explorer-main">
+        <div class="trace-toolbar">
+          <strong id="scenario-title">Happy path</strong>
+          <span class="muted small" id="scenario-sub">3 signed envelopes · verdict accept</span>
+        </div>
+        <ol class="trace" id="trace-list"></ol>
+        <div class="verdict" id="verdict"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXAMPLES ===================== -->
+<section id="examples" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">Four runnable examples · offline · no API keys</p>
+    <h2>From "hello, rig" to adversarial sub-agents.</h2>
+    <div class="cards">
+      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/01_two_agent_handoff">
+        <span class="card-num">01</span>
+        <h3>Two-agent handoff</h3>
+        <p>The minimum viable rig. A planner delegates to a worker. One signed contract; one execute; one verify.</p>
+      </a>
+      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/02_three_vendor_rig">
+        <span class="card-num">02</span>
+        <h3>Three-vendor rig</h3>
+        <p>Heterogeneous composition: a planner (Anthropic), a coder (OpenAI), a reviewer (local). Same rig.</p>
+      </a>
+      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/03_adversarial_subagent">
+        <span class="card-num">03</span>
+        <h3>Adversarial sub-agent</h3>
+        <p>The worker is deliberately bad. The verifier catches it. The blame chain points unambiguously at the worker.</p>
+      </a>
+      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/04_cost_attribution">
+        <span class="card-num">04</span>
+        <h3>Cost attribution</h3>
+        <p>A → B → C with explicit sub-budgets. C overruns. A's budget is unaffected. Cost has a defensible answer.</p>
+      </a>
+      <a class="card extra" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/05_vote_ensemble">
+        <span class="card-num">05</span>
+        <h3>Vote ensemble verifier</h3>
+        <p>Three verifiers, majority rules. Disagreement becomes a composition problem, not a runtime problem.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARCHITECTURE ===================== -->
+<section id="architecture" class="band">
+  <div class="container">
+    <p class="eyebrow">One-direction dependency graph</p>
+    <h2>Five small packages. No clever monolith.</h2>
+    <img class="full" src="./assets/architecture.svg" alt="Five packages: rigging-core, rigging-identity, rigging-trace, rigging-adapters, rigging-runtime." />
+    <ul class="grid-list">
+      <li><strong>rigging-core</strong> — schemas · protocols · errors. No I/O. No crypto. No LLMs.</li>
+      <li><strong>rigging-identity</strong> — the only crypto package. Ed25519, JCS, JWS, DIDs.</li>
+      <li><strong>rigging-trace</strong> — OTel span processor + blame-chain extractor.</li>
+      <li><strong>rigging-adapters</strong> — bridges to LiteLLM, MCP, local Python. &lt;500 LOC.</li>
+      <li><strong>rigging-runtime</strong> — the Rig orchestrator. Contract state machine. Verifier wiring.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== BENCHMARK ===================== -->
+<section id="bench" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">Rigging-Bench v0 · honest scoring</p>
+    <h2>Five axes. No 100%-everything theatre.</h2>
+    <div class="bench-grid">
+      <div class="bench-axis">
+        <header><span>Capability fidelity</span><strong>0.50</strong></header>
+        <div class="bar"><span style="--p:50%"></span></div>
+        <p class="small muted">Half honest, half dishonest agents — the floor is structural.</p>
+      </div>
+      <div class="bench-axis">
+        <header><span>Contract expressiveness</span><strong>1.00</strong></header>
+        <div class="bar full"><span style="--p:100%"></span></div>
+        <p class="small muted">All four canonical patterns expressible.</p>
+      </div>
+      <div class="bench-axis">
+        <header><span>Identity propagation</span><strong>0.85</strong></header>
+        <div class="bar"><span style="--p:85%"></span></div>
+        <p class="small muted">Spoofing, tampering, wrong-key covered. Revocation is v1.</p>
+      </div>
+      <div class="bench-axis">
+        <header><span>Cost attribution</span><strong>1.00</strong></header>
+        <div class="bar full"><span style="--p:100%"></span></div>
+        <p class="small muted">Zero L1 error on the synthetic chain.</p>
+      </div>
+      <div class="bench-axis">
+        <header><span>Blame resolution</span><strong>0.70</strong></header>
+        <div class="bar"><span style="--p:70%"></span></div>
+        <p class="small muted">Leaf attribution solid. Planner-misroutes &amp; verifier-itself-wrong: v1.</p>
+      </div>
+      <div class="bench-axis bench-headline">
+        <header><span>Overall</span><strong>0.81</strong></header>
+        <p class="small muted">We name the gaps so they cannot be hidden in headline numbers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPARISON ===================== -->
+<section id="compare" class="band">
+  <div class="container">
+    <p class="eyebrow">Where Rigging sits in the stack</p>
+    <h2>It is not MCP. It is not A2A. It is not a supervisor.</h2>
+    <div class="compare-wrap">
+    <table class="compare">
+      <thead><tr>
+        <th></th>
+        <th>MCP</th>
+        <th>A2A</th>
+        <th>Harness</th>
+        <th>Supervisor<br/><span class="muted small">(LangGraph, CrewAI)</span></th>
+        <th class="own">Rigging</th>
+      </tr></thead>
+      <tbody>
+        <tr><th>Tool wire format</th><td>✓</td><td>—</td><td>—</td><td>—</td><td class="own">↗ reuses</td></tr>
+        <tr><th>Agent-to-agent wire</th><td>—</td><td>✓</td><td>—</td><td>—</td><td class="own">↗ reuses</td></tr>
+        <tr><th>Single agent loop</th><td>—</td><td>—</td><td>✓</td><td>partial</td><td class="own">—</td></tr>
+        <tr><th>Multi-agent routing</th><td>—</td><td>—</td><td>—</td><td>✓</td><td class="own">✓ typed</td></tr>
+        <tr><th>Signed capability advertisement</th><td>—</td><td>partial</td><td>—</td><td>—</td><td class="own">✓</td></tr>
+        <tr><th>Typed delegation contract</th><td>—</td><td>—</td><td>—</td><td>—</td><td class="own">✓</td></tr>
+        <tr><th>Per-contract budget enforcement</th><td>—</td><td>—</td><td>per agent</td><td>—</td><td class="own">✓ recursive</td></tr>
+        <tr><th>Verifier as first-class participant</th><td>—</td><td>—</td><td>—</td><td>conv.</td><td class="own">✓</td></tr>
+        <tr><th>Cross-agent blame extraction</th><td>—</td><td>—</td><td>—</td><td>—</td><td class="own">✓</td></tr>
+        <tr><th>Refuses silent retries</th><td>n/a</td><td>n/a</td><td>policy</td><td>policy</td><td class="own">✓ structural</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted small">
+      A rig <em>uses</em> MCP and A2A as wire formats. It sits one floor up
+      from supervisor patterns. It does not replace your harness — it composes
+      across harnesses.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== CODE WALKTHROUGH ===================== -->
+<section id="code" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">One screen of code</p>
+    <h2>What a rig run actually looks like.</h2>
+<pre class="code-block"><code><span class="cmt"># build a rig and register two agents</span>
+<span class="kw">from</span> rigging.runtime <span class="kw">import</span> Rig
+<span class="kw">from</span> rigging.adapters <span class="kw">import</span> LocalPythonAdapter
+<span class="kw">from</span> rigging.identity <span class="kw">import</span> KeyPair
+
+rig = Rig(name=<span class="str">"my-system"</span>)
+rig.register(planner, keypair=planner_key)
+rig.register(worker,  keypair=worker_key)
+rig.register(quality, keypair=quality_key)
+
+<span class="cmt"># delegate with a signed, typed contract</span>
+result = <span class="kw">await</span> rig.call(
+    caller=planner,
+    callee_did=worker.did,
+    capability=<span class="str">"translate_pdf"</span>,
+    input={<span class="str">"uri"</span>: <span class="str">"s3://docs/contract.pdf"</span>,
+           <span class="str">"target_language"</span>: <span class="str">"fr"</span>},
+    cost_budget=(<span class="str">"usd"</span>, <span class="str">"0.50"</span>),
+    verifier=quality.did,
+)
+
+<span class="cmt"># export the trace + blame chain</span>
+trace = rig.finish()
+trace.write(<span class="str">"trace.json"</span>)</code></pre>
+    <p class="muted small">
+      No silent retries. No transparent fallback. No tribal knowledge.
+      A typed exception names the responsible agent, every time.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq" class="band">
+  <div class="container">
+    <p class="eyebrow">FAQ</p>
+    <h2>The questions we get every week.</h2>
+    <div class="faq">
+      <details>
+        <summary>Is this another wire protocol?</summary>
+        <p>No. Rigging sits <em>above</em> MCP and A2A. Tool calls inside a harness flow over MCP; the contract flows over A2A; the trace flows over OpenTelemetry. A rig that invents a new wire format is, by our definition, doing it wrong.</p>
+      </details>
+      <details>
+        <summary>Is the verifier privileged?</summary>
+        <p>No — and we tried that first. A verifier is just an agent whose card declares a <code>verify</code> capability. The runtime invariants apply to it uniformly. Disagreement becomes a composition problem (vote, recurse), not a runtime problem. See <a href="https://github.com/the-rigging-authors/rigging/blob/main/docs/adr/0007-verifier-as-agent.md">ADR-0007</a>.</p>
+      </details>
+      <details>
+        <summary>Why no silent retries?</summary>
+        <p>A retry against a fresh agent produces output signed by an identity the caller did not address. The trace shows A → B but the work was done by B′. Blame analysis terminates in a contradiction. Retries are first-class events with their own contracts and their own identifiers.</p>
+      </details>
+      <details>
+        <summary>Why Ed25519 and not OIDC?</summary>
+        <p>v0 only needs to answer "is this card real and unchanged?" Long-lived per-agent Ed25519 keys solve that with no infrastructure. OAuth/OIDC is a v1 conversation.</p>
+      </details>
+      <details>
+        <summary>Does the rig know about LLMs?</summary>
+        <p>No. <code>rigging-core</code> and <code>rigging-runtime</code> contain zero LLM-specific code. All provider concerns live under <code>rigging-adapters</code>.</p>
+      </details>
+      <details>
+        <summary>How do you stop one caller from putting charges on another caller's card?</summary>
+        <p>Cost is a property of a contract, not of an agent. B may subcontract to C only by carving a sub-budget from its own allocation. C's overruns hit B's ledger; A's budget is inviolable. See <a href="https://github.com/the-rigging-authors/rigging/blob/main/docs/adr/0006-explicit-budget-propagation.md">ADR-0006</a>.</p>
+      </details>
+      <details>
+        <summary>Will you ship a web dashboard?</summary>
+        <p>Not in v0. The TUI is sufficient. This page <em>is</em> the visual demo. A dedicated <code>rigging-viz</code> is on the roadmap.</p>
+      </details>
+      <details>
+        <summary>What is the name about?</summary>
+        <p>Maritime, not fraudulent. The rigging of a sailing ship is the load-bearing web that translates wind into motion. The sails do not move the ship. The hull does not move the ship. The rigging does.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section id="cta" class="band band-cta">
+  <div class="container">
+    <h2>Build a system, not a stack of agents.</h2>
+    <p class="muted">Star it on GitHub. Run the four examples. File an issue. We answer.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/the-rigging-authors/rigging" target="_blank" rel="noopener">★ Star on GitHub</a>
+      <a class="btn btn-ghost" href="https://github.com/the-rigging-authors/rigging/blob/main/CONCEPT.md" target="_blank" rel="noopener">Read CONCEPT.md</a>
+      <a class="btn btn-ghost" href="https://github.com/the-rigging-authors/rigging/blob/main/docs/spec/rig-contract-v0.md" target="_blank" rel="noopener">Read the spec</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <span>Apache 2.0 · © The Rigging Authors</span>
+    <span class="muted small">"You can have a great harness on every agent and still have terrible rigging."</span>
+  </div>
+</footer>
+
+<script src="./script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pydantic anyio cryptography typer rich \
+              structlog opentelemetry-api opentelemetry-sdk pytest \
+              hypothesis pytest-anyio
+      - name: Run tests
+        env:
+          PYTHONPATH: >-
+            packages/rigging-core/src:packages/rigging-identity/src:packages/rigging-trace/src:packages/rigging-adapters/src:packages/rigging-runtime/src:.
+        run: python -m pytest tests/ -q
+      - name: Run smoke benchmark
+        env:
+          PYTHONPATH: >-
+            packages/rigging-core/src:packages/rigging-identity/src:packages/rigging-trace/src:packages/rigging-adapters/src:packages/rigging-runtime/src:.
+        run: python -m benchmarks.rig_bench.run

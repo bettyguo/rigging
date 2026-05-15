@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 380" width="1100" height="380" role="img" aria-label="A blame chain produced by the rig runtime">
+  <defs>
+    <linearGradient id="cardOk" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="cardBad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <linearGradient id="cardVer" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0c1f60"/>
+    </linearGradient>
+    <style>
+      .lbl { fill:#cbd5e1; font: 600 13px ui-sans-serif, system-ui, sans-serif; }
+      .sub { fill:#94a3b8; font: 11px ui-monospace, monospace; }
+      .did { fill:#fde68a; font: 11px ui-monospace, monospace; }
+      .h    { fill:#f1f5f9; font: 700 18px ui-sans-serif, system-ui, sans-serif; }
+      .ttl  { fill:#94a3b8; font: 600 12px ui-monospace, monospace; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="380" fill="#020617"/>
+  <text x="40" y="44" class="h">blame chain · contract 01HXQK3Z</text>
+  <text x="40" y="64" class="ttl">walk backwards from the verifier's reject until you arrive at a signed envelope no one else co-signed.</text>
+
+  <!-- Node template helpers -->
+  <!-- A (planner) -->
+  <g transform="translate(40,110)">
+    <rect width="200" height="120" rx="14" fill="url(#cardOk)" stroke="#10b981"/>
+    <text x="16" y="28" class="ttl">caller · planner</text>
+    <text x="16" y="56" class="lbl">A · plan_translation</text>
+    <text x="16" y="78" class="did">did:rig:k0m…7zE</text>
+    <text x="16" y="98" class="sub">cost: 1 unit · ok</text>
+    <text x="16" y="114" class="sub">sig: ed25519 ✓</text>
+  </g>
+  <line x1="240" y1="170" x2="288" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- B (worker) -->
+  <g transform="translate(290,110)">
+    <rect width="220" height="120" rx="14" fill="url(#cardBad)" stroke="#ef4444"/>
+    <text x="16" y="28" class="ttl">callee · worker (bad output)</text>
+    <text x="16" y="56" class="lbl">B · translate_pdf</text>
+    <text x="16" y="78" class="did">did:rig:9rT…qN2</text>
+    <text x="16" y="98" class="sub">cost: 0.12 usd · ok</text>
+    <text x="16" y="114" class="sub">sig: ed25519 ✓ (proximate)</text>
+  </g>
+  <line x1="510" y1="170" x2="558" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- V (verifier) -->
+  <g transform="translate(560,110)">
+    <rect width="220" height="120" rx="14" fill="url(#cardVer)" stroke="#38bdf8"/>
+    <text x="16" y="28" class="ttl">verifier sub-contract</text>
+    <text x="16" y="56" class="lbl">V · verify</text>
+    <text x="16" y="78" class="did">did:rig:fY1…8wB</text>
+    <text x="16" y="98" class="sub">verdict: reject · reason: schema_violation</text>
+    <text x="16" y="114" class="sub">sig: ed25519 ✓</text>
+  </g>
+  <line x1="780" y1="170" x2="828" y2="170" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Operator surface -->
+  <g transform="translate(830,110)">
+    <rect width="220" height="120" rx="14" fill="#0b1220" stroke="#475569"/>
+    <text x="16" y="28" class="ttl">operator surface</text>
+    <text x="16" y="56" class="lbl">VerifierRejected</text>
+    <text x="16" y="78" class="did">contract_id 01HXQK3Z…</text>
+    <text x="16" y="98" class="sub">proximate cause: did:rig:9rT…qN2</text>
+    <text x="16" y="114" class="sub">trace: 14 signed envelopes</text>
+  </g>
+
+  <!-- Caption row -->
+  <g transform="translate(40,275)" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="12">
+    <rect x="0" y="0" width="22" height="22" rx="6" fill="url(#cardOk)" stroke="#10b981"/>
+    <text x="32" y="16">honest envelope</text>
+    <rect x="180" y="0" width="22" height="22" rx="6" fill="url(#cardBad)" stroke="#ef4444"/>
+    <text x="212" y="16">proximate cause</text>
+    <rect x="380" y="0" width="22" height="22" rx="6" fill="url(#cardVer)" stroke="#38bdf8"/>
+    <text x="412" y="16">verifier sub-contract</text>
+  </g>
+
+  <g transform="translate(40,320)" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">
+    <text>If you swap B's output for ground truth, the verifier accepts and the run succeeds. The chain stops at B. That is mechanical blame.</text>
+  </g>
+</svg>

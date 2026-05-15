@@ -1,0 +1,61 @@
+name: Feature request / discussion
+description: A new capability, adapter, or runtime invariant.
+title: "feature: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        New features that touch the runtime, the spec, or any of the
+        invariants in [CONCEPT.md](../../CONCEPT.md) usually need an ADR
+        before code. For smaller features (a new adapter, a new
+        benchmark probe, a CLI flag), this issue is enough — open it and
+        we'll discuss before you start.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of feature
+      options:
+        - New adapter (LangGraph, Goose, AutoGen, custom harness, …)
+        - New benchmark probe / axis
+        - New runtime invariant (will require an ADR)
+        - New CLI command or flag
+        - Spec change (will require an ADR)
+        - Live site / documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Concrete is better than abstract. Cite a real use case.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: How would the rig behave with this feature? Sketch the API or the user-visible change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Including "do nothing." This is required because most rig features are about *what to refuse*, not *what to add*.
+    validations:
+      required: true
+
+  - type: textarea
+    id: spec
+    attributes:
+      label: Spec / ADR implications
+      description: Does this change any v0 spec? Does it warrant an ADR? Link to existing ADRs it would supersede.
+      placeholder: e.g., supersedes ADR-0006; adds a `streaming` field to Contract; …
+    validations:
+      required: false

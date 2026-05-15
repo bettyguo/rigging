@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480" role="img" aria-label="Rigging package architecture">
+  <defs>
+    <linearGradient id="boxRuntime" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+    <linearGradient id="boxCore" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="boxIdent" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#365314"/>
+      <stop offset="100%" stop-color="#1a2e05"/>
+    </linearGradient>
+    <linearGradient id="boxTrace" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#3f3f46"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+    <linearGradient id="boxAdapt" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </linearGradient>
+    <linearGradient id="boxExt" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <style>
+      .title  { fill:#f8fafc; font: 700 18px ui-sans-serif, system-ui, sans-serif; }
+      .sub    { fill:#cbd5e1; font: 12px ui-monospace, monospace; }
+      .corner { fill:#fbbf24; font: 700 11px ui-monospace, monospace; }
+      .h1     { fill:#f1f5f9; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+      .h2     { fill:#94a3b8; font: 500 13px ui-monospace, monospace; }
+      .ext    { fill:#94a3b8; font: 600 13px ui-monospace, monospace; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="480" fill="#020617"/>
+  <text x="40" y="42" class="h1">rigging — five small Python packages plus a CLI</text>
+  <text x="40" y="62" class="h2">one-direction dependency graph · provider-agnostic core · all LLM/MCP code lives only in adapters</text>
+
+  <!-- runtime (center, biggest) -->
+  <g transform="translate(440,140)">
+    <rect width="320" height="120" rx="14" fill="url(#boxRuntime)" stroke="#0ea5e9"/>
+    <text x="20" y="32" class="corner">rigging-runtime</text>
+    <text x="20" y="62" class="title">The Rig orchestrator</text>
+    <text x="20" y="86" class="sub">contract state machine</text>
+    <text x="20" y="102" class="sub">budget ledger · verifier · spans</text>
+  </g>
+
+  <!-- core -->
+  <g transform="translate(40,140)">
+    <rect width="280" height="120" rx="14" fill="url(#boxCore)" stroke="#475569"/>
+    <text x="20" y="32" class="corner">rigging-core</text>
+    <text x="20" y="62" class="title">Schemas · protocols</text>
+    <text x="20" y="86" class="sub">Contract · AgentCard · Trace</text>
+    <text x="20" y="102" class="sub">no I/O · no crypto · no LLMs</text>
+  </g>
+
+  <!-- identity -->
+  <g transform="translate(40,300)">
+    <rect width="280" height="120" rx="14" fill="url(#boxIdent)" stroke="#65a30d"/>
+    <text x="20" y="32" class="corner">rigging-identity</text>
+    <text x="20" y="62" class="title">Ed25519 · DID · JCS · JWS</text>
+    <text x="20" y="86" class="sub">card signing &amp; verify</text>
+    <text x="20" y="102" class="sub">the only crypto package</text>
+  </g>
+
+  <!-- trace -->
+  <g transform="translate(880,140)">
+    <rect width="280" height="120" rx="14" fill="url(#boxTrace)" stroke="#a1a1aa"/>
+    <text x="20" y="32" class="corner">rigging-trace</text>
+    <text x="20" y="62" class="title">OTel processor</text>
+    <text x="20" y="86" class="sub">blame-chain extractor</text>
+    <text x="20" y="102" class="sub">rig.* span attributes</text>
+  </g>
+
+  <!-- adapters -->
+  <g transform="translate(880,300)">
+    <rect width="280" height="120" rx="14" fill="url(#boxAdapt)" stroke="#a855f7"/>
+    <text x="20" y="32" class="corner">rigging-adapters</text>
+    <text x="20" y="62" class="title">LiteLLM · MCP · Local</text>
+    <text x="20" y="86" class="sub">bridges from any harness</text>
+    <text x="20" y="102" class="sub">&lt; 500 LOC total</text>
+  </g>
+
+  <!-- External systems -->
+  <g transform="translate(440,310)">
+    <rect width="320" height="110" rx="14" fill="url(#boxExt)" stroke="#334155" stroke-dasharray="6 4"/>
+    <text x="20" y="32" class="corner">external · out of scope</text>
+    <text x="20" y="60" class="ext">MCP servers · LiteLLM providers</text>
+    <text x="20" y="78" class="ext">OTel collector · your harness</text>
+    <text x="20" y="96" class="ext">A2A peers (future)</text>
+  </g>
+
+  <!-- arrows -->
+  <line x1="320" y1="200" x2="436" y2="200" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="320" y1="360" x2="440" y2="360" stroke="#64748b" stroke-width="2" marker-end="url(#arrD)" stroke-dasharray="5 5"/>
+  <line x1="760" y1="200" x2="876" y2="200" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="760" y1="360" x2="876" y2="360" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="600" y1="260" x2="600" y2="306" stroke="#64748b" stroke-width="2" marker-end="url(#arrD)" stroke-dasharray="5 5"/>
+
+  <!-- legend -->
+  <g transform="translate(40,440)" font-family="ui-monospace, monospace" font-size="12" fill="#94a3b8">
+    <line x1="0" y1="-5" x2="40" y2="-5" stroke="#38bdf8" stroke-width="2"/>
+    <text x="48" y="0">depends on</text>
+    <line x1="180" y1="-5" x2="220" y2="-5" stroke="#64748b" stroke-width="2" stroke-dasharray="5 5"/>
+    <text x="228" y="0">calls at runtime</text>
+  </g>
+</svg>

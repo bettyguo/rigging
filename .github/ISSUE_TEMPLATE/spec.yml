@@ -1,0 +1,52 @@
+name: Spec or ADR feedback
+description: A correction, ambiguity, or counter-proposal against the v0 specs or ADRs.
+title: "spec: "
+labels: ["spec", "discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Spec corrections are first-class contributions. If you find an
+        ambiguity, a typo in normative MUST/SHOULD/MAY language, or a
+        place where the spec contradicts the reference implementation,
+        please file this issue. For load-bearing disagreements, please
+        also draft a counter-ADR per [CONTRIBUTING.md](../../CONTRIBUTING.md).
+
+  - type: dropdown
+    id: doc
+    attributes:
+      label: Which document?
+      options:
+        - "spec: rig-contract-v0"
+        - "spec: agent-card-v0"
+        - "spec: trace-v0"
+        - "spec: identity-v0"
+        - "ADR (specify number below)"
+        - "CONCEPT.md"
+        - "Other"
+    validations:
+      required: true
+
+  - type: input
+    id: section
+    attributes:
+      label: Section / paragraph
+      description: e.g., "§3.2", "Decision", "Consequences", "Q4 of think.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear / wrong / missing?
+      description: Quote the exact text where possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed wording or behaviour
+      description: If you have a fix, sketch it here. Otherwise leave for discussion.
+    validations:
+      required: false
