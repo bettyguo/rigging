@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rigging — cheatsheet</title>
+  <meta name="description" content="A one-page rigging cheatsheet — printable. The runtime, the spec, the typed errors." />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-row">
+    <a class="brand" href="./index.html">
+      <img src="./assets/logo.svg" alt="" width="28" height="28" />
+      <span>rigging</span>
+      <span class="badge-inline">cheatsheet</span>
+    </a>
+    <nav class="nav-links">
+      <a href="./index.html">← back</a>
+      <a class="cta" href="javascript:window.print()">🖨 Print</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="hero" style="padding: 40px 0 16px;">
+  <div>
+    <p class="kicker">One-page reference · v0</p>
+    <h1 style="font-size:36px;margin:8px 0 6px;">Rigging cheatsheet.</h1>
+    <p class="muted" style="margin:0">Print this and stick it on the wall. Everything you need to write your first rig.</p>
+  </div>
+</section>
+
+<section class="cheat">
+  <article class="cheat-card">
+    <h3>① Build a rig</h3>
+<pre>from rigging.runtime import Rig
+from rigging.identity import KeyPair, generate_keypair
+from rigging.adapters import LocalPythonAdapter
+
+planner_key = generate_keypair()
+worker_key  = generate_keypair()
+
+rig = Rig(name="my-system")
+rig.register(planner, keypair=planner_key)
+rig.register(worker,  keypair=worker_key)</pre>
+  </article>
+
+  <article class="cheat-card">
+    <h3>② Delegate</h3>
+<pre>result = await rig.call(
+    caller=planner,
+    callee_did=worker.did,
+    capability="translate_pdf",
+    input={"uri": "s3://docs/x.pdf",
+           "target_language": "fr"},
+    cost_budget=("usd", "0.50"),
+    verifier=quality.did,
+)</pre>
+  </article>
+
+  <article class="cheat-card">
+    <h3>③ Inspect</h3>
+<pre>trace = rig.finish()
+trace.write("trace.json")
+
+# CLI
+rig trace inspect ./trace.json
+rig trace inspect --highlight=blame</pre>
+  </article>
+
+  <article class="cheat-card">
+    <h3>Typed errors you may get</h3>
+    <ul>
+      <li><strong>VerifierRejected</strong> — verifier signed a reject verdict.</li>
+      <li><strong>BudgetOverrun</strong> — callee exceeded the contract budget.</li>
+      <li><strong>BudgetExhausted</strong> — caller's parent budget already spent.</li>
+      <li><strong>ContractExpired</strong> — wall-clock past <code>expires</code>.</li>
+      <li><strong>ContractRejected</strong> — callee declined the proposal.</li>
+      <li><strong>CalleeUnreachable</strong> — DID not registered.</li>
+      <li><strong>VerifierUnreachable</strong> — verifier DID not registered.</li>
+      <li><strong>SignatureInvalid</strong> — JWS does not verify.</li>
+      <li><strong>CapabilityMismatch</strong> — capability or schema does not match the card.</li>
+      <li><strong>PolicyDenied</strong> — runtime policy refused.</li>
+      <li><strong>RecursionCapExceeded</strong> — contract or verifier nesting cap hit.</li>
+    </ul>
+  </article>
+
+  <article class="cheat-card">
+    <h3>Span kinds in the trace</h3>
+    <ul>
+      <li><strong>rig.contract.propose</strong> — caller-signed contract sent to callee.</li>
+      <li><strong>rig.contract.accept</strong> — callee-signed acceptance.</li>
+      <li><strong>rig.contract.reject</strong> — callee declined (with reason).</li>
+      <li><strong>rig.contract.void</strong> — runtime voided (expired / overrun / unreachable / signature).</li>
+      <li><strong>rig.execute</strong> — callee ran the capability; output envelope attached.</li>
+      <li><strong>rig.verify</strong> — verifier sub-contract; verdict envelope attached.</li>
+      <li><strong>rig.cost.debit</strong> — ledger entry against the contract.</li>
+    </ul>
+  </article>
+
+  <article class="cheat-card">
+    <h3>The six refusals</h3>
+    <ul>
+      <li>routing against unsigned cards.</li>
+      <li>contracts whose capabilities are undeclared.</li>
+      <li>silent retries.</li>
+      <li>attributing cost to anyone but the contract holder.</li>
+      <li>admitting unverified output as verified.</li>
+      <li>being a marketplace, scheduler, router, or harness.</li>
+    </ul>
+  </article>
+
+  <article class="cheat-card">
+    <h3>CLI</h3>
+<pre>rig identity create
+rig identity show
+rig identity verify card.json
+
+rig run 01-two-agent-handoff
+rig run 03-adversarial-subagent
+
+rig trace inspect ./trace.json
+rig bench
+rig bench --full
+rig spec validate docs/spec/...</pre>
+  </article>
+
+  <article class="cheat-card">
+    <h3>Mental model</h3>
+    <ul>
+      <li><strong>Cards</strong> — who an agent is and what it claims.</li>
+      <li><strong>Contracts</strong> — what A asked B to do, signed.</li>
+      <li><strong>Blame</strong> — which envelope, walked backwards, caused the failure.</li>
+      <li>The rig <em>uses</em> MCP and A2A; it does not replace them.</li>
+      <li>The rig has no LLM-specific code in core. Provider concerns live in adapters.</li>
+    </ul>
+  </article>
+
+  <article class="cheat-card">
+    <h3>When in doubt</h3>
+    <ul>
+      <li>Always pass <code>cost_budget</code>. No exceptions.</li>
+      <li>Always pass <code>verifier</code> in production.</li>
+      <li>Refuse silent retries. If your code has <code>except / retry</code> around <code>rig.call</code>, that's an explicit retry contract — sign and trace it.</li>
+      <li>If you find yourself importing <code>cryptography</code> outside <code>rigging-identity</code>, you missed a layer.</li>
+    </ul>
+  </article>
+
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <span>Apache 2.0 · © The Rigging Authors</span>
+    <span class="muted small">bettyguo.github.io/rigging · v0</span>
+  </div>
+</footer>
+
+</body>
+</html>

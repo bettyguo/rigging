@@ -11,7 +11,7 @@ If you believe you have found a security vulnerability in `rigging`,
 please report it privately through one of the following channels:
 
 1. **GitHub Security Advisories** — preferred. Go to the repository's
-   [Security tab](https://github.com/the-rigging-authors/rigging/security/advisories/new)
+   [Security tab](https://github.com/bettyguo/rigging/security/advisories/new)
    and click *Report a vulnerability*.
 2. **Email** — `security@rigging.dev` (placeholder — replace with an
    active address before public launch). Encrypt with our published PGP

@@ -2,55 +2,62 @@
 
 <img src="./assets/hero.svg" alt="Rigging — the load-bearing web that translates wind into motion" width="100%"/>
 
-<h1>rigging</h1>
+# rigging
 
-<p><strong><em>A harness is for one agent. Rigging is for the fleet.</em></strong></p>
+**_A harness is for one agent. Rigging is for the fleet._**
 
-<p>The typed, trust-bearing, schema-mediated coupling layer that composes<br/>
-heterogeneous harnessed agents into a single coherent system.</p>
+The typed, trust-bearing, schema-mediated coupling layer that composes
+heterogeneous harnessed agents into a single coherent system.
 
 <p>
-  <a href="https://github.com/the-rigging-authors/rigging/actions/workflows/ci.yml"><img src="https://img.shields.io/badge/tests-76%20passing-10b981?style=flat-square&labelColor=0b1220" alt="tests"/></a>
-  <a href="https://github.com/the-rigging-authors/rigging/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-22d3ee?style=flat-square&labelColor=0b1220" alt="license"/></a>
-  <img src="https://img.shields.io/badge/python-3.12%2B-38bdf8?style=flat-square&labelColor=0b1220" alt="python"/>
-  <img src="https://img.shields.io/badge/status-v0%20reference-fbbf24?style=flat-square&labelColor=0b1220" alt="status"/>
-  <img src="https://img.shields.io/badge/protocol-MCP%20%2B%20A2A%20%2B%20OTel-a78bfa?style=flat-square&labelColor=0b1220" alt="protocols"/>
-  <a href="./CONCEPT.md"><img src="https://img.shields.io/badge/read-CONCEPT.md-ef4444?style=flat-square&labelColor=0b1220" alt="concept"/></a>
+  <img src="https://img.shields.io/badge/tests-76%20passing-10b981?style=for-the-badge&labelColor=0b1220&logo=pytest&logoColor=22d3ee" alt="76 tests passing"/>
+  <img src="https://img.shields.io/badge/license-Apache--2.0-22d3ee?style=for-the-badge&labelColor=0b1220" alt="Apache 2.0"/>
+  <img src="https://img.shields.io/badge/python-3.12%2B-38bdf8?style=for-the-badge&labelColor=0b1220&logo=python&logoColor=38bdf8" alt="Python 3.12+"/>
+  <img src="https://img.shields.io/badge/status-v0%20reference-fbbf24?style=for-the-badge&labelColor=0b1220" alt="v0 reference"/>
 </p>
 
 <p>
-  <a href="https://the-rigging-authors.github.io/rigging/"><strong>Live site &amp; interactive demo →</strong></a>
-  &nbsp;·&nbsp;
-  <a href="./CONCEPT.md">Long-form essay</a>
-  &nbsp;·&nbsp;
-  <a href="./docs/spec/rig-contract-v0.md">Spec</a>
-  &nbsp;·&nbsp;
-  <a href="./benchmarks/results/v0-reference.md">Benchmarks</a>
-  &nbsp;·&nbsp;
-  <a href="./docs/FAQ.md">FAQ</a>
+  <a href="https://github.com/bettyguo/rigging/stargazers"><img src="https://img.shields.io/github/stars/bettyguo/rigging?style=flat-square&labelColor=0b1220&color=fbbf24&logo=github&logoColor=fbbf24" alt="stars"/></a>
+  <a href="https://github.com/bettyguo/rigging/network/members"><img src="https://img.shields.io/github/forks/bettyguo/rigging?style=flat-square&labelColor=0b1220&color=38bdf8&logo=github&logoColor=38bdf8" alt="forks"/></a>
+  <a href="https://github.com/bettyguo/rigging/issues"><img src="https://img.shields.io/github/issues/bettyguo/rigging?style=flat-square&labelColor=0b1220&color=a78bfa" alt="issues"/></a>
+  <a href="https://github.com/bettyguo/rigging/commits/main"><img src="https://img.shields.io/github/last-commit/bettyguo/rigging?style=flat-square&labelColor=0b1220&color=22d3ee" alt="last commit"/></a>
+  <a href="https://github.com/bettyguo/rigging"><img src="https://img.shields.io/github/repo-size/bettyguo/rigging?style=flat-square&labelColor=0b1220&color=64748b" alt="repo size"/></a>
+  <a href="./CONCEPT.md"><img src="https://img.shields.io/badge/read-CONCEPT.md-ef4444?style=flat-square&labelColor=0b1220" alt="CONCEPT.md"/></a>
+</p>
+
+<p>
+  <a href="https://bettyguo.github.io/rigging/"><kbd>🌊 Live site &amp; interactive demo</kbd></a>
+  &nbsp;<a href="https://bettyguo.github.io/rigging/cheatsheet.html"><kbd>🧾 Cheatsheet</kbd></a>
+  &nbsp;<a href="./CONCEPT.md"><kbd>📖 Long-form essay</kbd></a>
+  &nbsp;<a href="./docs/spec/rig-contract-v0.md"><kbd>📐 Spec</kbd></a>
+  &nbsp;<a href="./benchmarks/results/v0-reference.md"><kbd>📊 Benchmarks</kbd></a>
+  &nbsp;<a href="./docs/FAQ.md"><kbd>❓ FAQ</kbd></a>
+  &nbsp;<a href="./docs/glossary.md"><kbd>📕 Glossary</kbd></a>
 </p>
 
 </div>
+
+> [!NOTE]
+> **🌊 Want to see it work first?** The [**live site**](https://bettyguo.github.io/rigging/) has two interactive demos:
+> a **blame-chain explorer** (pick a failure, watch the runtime extract the proximate cause)
+> and a **contract negotiation animation** (six steps; press ▶).
+> If the URL 404s, the site hasn't been deployed yet — see [§ Deploying the live site](#deploying-the-live-site).
 
 ---
 
 ## Table of contents
 
-- [The thirty-second pitch](#the-thirty-second-pitch)
-- [60-second quickstart](#60-second-quickstart)
-- [The three primitives](#the-three-primitives)
-- [What it looks like in practice](#what-it-looks-like-in-practice)
-- [Walk a real blame chain](#walk-a-real-blame-chain)
-- [Rigging vs MCP, A2A, harnesses, supervisors](#rigging-vs-mcp-a2a-harnesses-supervisors)
-- [The four runnable examples](#the-four-runnable-examples)
-- [Architecture](#architecture)
-- [Rigging-Bench v0](#rigging-bench-v0)
-- [Repository layout](#repository-layout)
-- [Roadmap](#roadmap)
-- [FAQ](#faq)
-- [Contributing](#contributing)
-- [A note on the name](#a-note-on-the-name)
-- [License](#license)
+<table>
+<tr><td><a href="#the-thirty-second-pitch">🚀 The thirty-second pitch</a></td><td><a href="#walk-a-real-blame-chain">🔍 Walk a real blame chain</a></td></tr>
+<tr><td><a href="#60-second-quickstart">⚡ 60-second quickstart</a></td><td><a href="#why-now">📅 Why now?</a></td></tr>
+<tr><td><a href="#the-three-primitives">① Cards · ② Contracts · ③ Blame</a></td><td><a href="#use-cases-where-a-rig-saves-your-weekend">💼 Use cases</a></td></tr>
+<tr><td><a href="#what-it-looks-like-in-practice">🧑‍💻 What it looks like</a></td><td><a href="#rigging-vs-mcp-a2a-harnesses-supervisors">⚖️ Rigging vs.</a></td></tr>
+<tr><td><a href="#the-five-runnable-examples">📚 Five examples</a></td><td><a href="#architecture">🏗 Architecture</a></td></tr>
+<tr><td><a href="#cost-attribution-that-actually-attributes">💰 Cost attribution</a></td><td><a href="#rigging-bench-v0">📊 Rigging-Bench v0</a></td></tr>
+<tr><td><a href="#the-six-refusals">🚫 The six refusals</a></td><td><a href="#repository-layout">📁 Repo layout</a></td></tr>
+<tr><td><a href="#roadmap">🗺 Roadmap</a></td><td><a href="#faq">❓ FAQ</a></td></tr>
+<tr><td><a href="#contributing">🤝 Contributing</a></td><td><a href="#deploying-the-live-site">🚢 Deploy live site</a></td></tr>
+</table>
 
 ---
 
@@ -60,16 +67,15 @@ heterogeneous harnessed agents into a single coherent system.</p>
 
 That layer — the typed, signed, opinionated runtime that turns ad-hoc multi-agent glue into an auditable substrate — is *rigging*. This repository is its first reference implementation.
 
-You can have a great harness on every agent and **still have terrible rigging**.
-
-If you are not the model, and you are not the harness, you are the rigging.
+> 🪢 **You can have a great harness on every agent and still have terrible rigging.**
+> If you are not the model, and you are not the harness, you are the rigging.
 
 ---
 
 ## 60-second quickstart
 
 ```bash
-git clone https://github.com/the-rigging-authors/rigging
+git clone https://github.com/bettyguo/rigging
 cd rigging
 
 # Install the workspace (Python 3.12+)
@@ -87,7 +93,7 @@ rig trace inspect ./trace.json
 
 No API keys. No network. Every example runs offline.
 
-> 💡 **Prefer to look first?** The [**live site**](https://the-rigging-authors.github.io/rigging/) has an interactive blame-chain explorer — pick a failure mode and watch the runtime walk the DAG.
+> 💡 **Prefer to look first?** The [**live site**](https://bettyguo.github.io/rigging/) has an interactive blame-chain explorer and a contract-negotiation animation. Or pick up the [**one-page cheatsheet**](https://bettyguo.github.io/rigging/cheatsheet.html) (also printable).
 
 ---
 
@@ -156,7 +162,7 @@ What you get behind that one call:
 - An OpenTelemetry-compatible trace with `rig.*` attributes.
 - A **typed exception** — `VerifierRejected`, `BudgetOverrun`, `CalleeUnreachable`, `SignatureInvalid`, `ContractExpired`, … — if anything goes wrong, with a blame chain that names the responsible agent.
 
-**No silent retries. No transparent fallback. No tribal knowledge.**
+> 🛑 **No silent retries. No transparent fallback. No tribal knowledge.**
 
 ---
 
@@ -184,8 +190,48 @@ trace 01HXQK3Z…                                14 signed envelopes
 blame ▶ did:rig:9rT…qN2    (worker)
 ```
 
-> 🌊 [**Try it interactively on the live site →**](https://the-rigging-authors.github.io/rigging/#explorer)
+> 🌊 [**Try it interactively on the live site →**](https://bettyguo.github.io/rigging/#explorer)
 > Pick a failure mode (adversarial output, budget overrun, expired contract, forged signature) and watch the runtime produce the chain step by step.
+
+---
+
+## Why now?
+
+Every layer in the agent stack was open-coded by every team before it had a name. Each named layer is two years older than the one above it. The next layer — typed coupling across trust domains — is due.
+
+<p align="center">
+  <img src="./assets/timeline.svg" alt="2022 model · 2023 tools · 2024 MCP & harness · 2025 A2A & supervisors · 2026 Rigging" width="100%"/>
+</p>
+
+> The model was named first. Then the tool surface. Then the agent loop. Then the agent-to-agent wire. The layer that comes next — the typed coupling across trust domains — needs a name too. **That layer is rigging.**
+
+---
+
+## Use cases — where a rig saves your weekend
+
+> Synthesised from real practitioner conversations. Detail in [`docs/case-studies.md`](./docs/case-studies.md).
+
+<table>
+<tr>
+  <td width="33%" valign="top">
+    <h4>💸 The runaway subcontractor</h4>
+    <p><strong>Before:</strong> a planner's "resilience" fallback silently spawned 52 sibling agents on the same query. <strong>$8,400 in token spend</strong> before alerting fired.</p>
+    <p><strong>With rigging:</strong> the retry is a new signed contract; the sibling's budget is carved from the parent's allocation. <code>BudgetOverrun</code> hits at <strong>$0.50</strong>.</p>
+  </td>
+  <td width="33%" valign="top">
+    <h4>🌙 3 AM "which agent broke it"</h4>
+    <p><strong>Before:</strong> four reviewers from three vendors auto-merged a regression. The post-mortem took <strong>6 engineers × 8 hours</strong> to attribute.</p>
+    <p><strong>With rigging:</strong> one trace, one blame chain. <code>rig trace inspect</code> names the scanner whose verdict was wrong, with its signed envelope as the proof.</p>
+  </td>
+  <td width="33%" valign="top">
+    <h4>📜 The compliance audit</h4>
+    <p><strong>Before:</strong> "prove which agent made each decision under what budget" took <strong>2 weeks</strong> of log-joining.</p>
+    <p><strong>With rigging:</strong> every decision is a signed contract, every output a signed envelope. The audit is a database query.</p>
+  </td>
+</tr>
+</table>
+
+The rig is, in this sense, the **insurance product** of an agentic stack: it does not prevent the storm, but it makes "what was damaged and who is responsible" answerable. The premium is the discipline of typed contracts and signed envelopes. The payout is every incident that *used* to take a day to attribute.
 
 ---
 
@@ -210,7 +256,7 @@ A longer survey is at [`docs/related-work.md`](./docs/related-work.md), with an 
 
 ---
 
-## The four runnable examples
+## The five runnable examples
 
 Each runs offline. No API keys, no network. Each has its own `README.md`.
 
@@ -230,7 +276,38 @@ rig run 04-cost-attribution
 rig run 05-vote-ensemble
 ```
 
-A walkthrough of all five with annotated traces is at [`docs/EXAMPLES.md`](./docs/EXAMPLES.md).
+An annotated walkthrough of all five with sequence diagrams and "the invariant exercised" callouts is at [`docs/EXAMPLES.md`](./docs/EXAMPLES.md).
+
+---
+
+## Cost attribution that actually attributes
+
+Cost is a property of a **contract**, not of an **agent**. B may subcontract to C only by carving a sub-budget from B's own allocation. C's overruns hit B's ledger; **A's budget is inviolable**.
+
+<p align="center">
+  <img src="./assets/cost-waterfall.svg" alt="Cost attribution waterfall — A → B → C" width="100%"/>
+</p>
+
+The naïve "original caller pays for everything in the call graph" is the choice every prototype makes and every production system regrets. Once agent B can subcontract to C without A's awareness, A is on the hook for arbitrary downstream spending. This is the agentic version of letting a subcontractor put arbitrary charges on the general contractor's credit card. Rigging refuses it structurally. See [ADR-0006](./docs/adr/0006-explicit-budget-propagation.md).
+
+---
+
+## The six refusals
+
+The art of this layer is in what it refuses, not in what it provides.
+
+<p align="center">
+  <img src="./assets/refusals.svg" alt="The six refusals" width="100%"/>
+</p>
+
+```
+1. refuses to route against unsigned cards.
+2. refuses to issue contracts whose capabilities are undeclared.
+3. refuses to retry silently.
+4. refuses to attribute cost to anyone other than the contract holder.
+5. refuses to admit unverified output as verified.
+6. refuses to be a marketplace, a scheduler, a router, or a harness.
+```
 
 ---
 
@@ -263,6 +340,14 @@ graph LR
 
 The full architecture, sequence diagram, state machine, and trust-boundary discussion is at [`docs/architecture.md`](./docs/architecture.md).
 
+### The contract state machine
+
+<p align="center">
+  <img src="./assets/state-machine.svg" alt="Contract state machine — proposed, active, fulfilled, rejected, voided" width="100%"/>
+</p>
+
+Terminal states are `fulfilled`, `rejected`, and `voided`. **There is no edge labelled "silently retry"** — by design. See [ADR-0009](./docs/adr/0009-no-silent-retries.md).
+
 ---
 
 ## Rigging-Bench v0
@@ -294,12 +379,14 @@ Methodology: [`docs/benchmarks/rigging-completeness-matrix.md`](./docs/benchmark
 rigging/
 ├── CONCEPT.md                # The seminal essay (~2k words)
 ├── README.md                 # You are here
-├── site/                     # GitHub Pages source (live demo)
+├── site/                     # GitHub Pages source (live demo + cheatsheet)
 ├── assets/                   # SVG hero, diagrams, brand
 ├── docs/
 │   ├── architecture.md       # Package graph + per-call sequence + state machine
 │   ├── related-work.md       # MCP · A2A · ACP · OASF · LangGraph · CrewAI · …
 │   ├── EXAMPLES.md           # Annotated walkthrough of the five examples
+│   ├── case-studies.md       # Three real-world failure modes
+│   ├── glossary.md           # The vocabulary
 │   ├── FAQ.md                # The questions we get every week
 │   ├── roadmap.md            # What's in v0, what's in v1
 │   ├── spec/                 # v0 specs: identity, agent-card, contract, trace
@@ -322,16 +409,17 @@ The dependency graph between packages is one-direction. Adapters never import fr
 
 ## Roadmap
 
-**v0 (this release):** the five primitives, the four specs, ten ADRs, five examples, the five-axis benchmark, the CLI, the live site.
+**v0 (this release):** the five primitives, the four specs, ten ADRs, five examples, the five-axis benchmark, the CLI, the live site, the cheatsheet.
 
 **v1 (the immediate horizon):**
 
 - Mid-chain blame attribution (planner-misroutes, verifier-itself-wrong, recursive verification).
 - Card revocation (without forcing key rotation).
 - KMS-backed signing.
-- A real `rigging-viz` web visualizer.
-- One real-world harness adapter (LangGraph or Goose or AutoGen — picking based on community pull).
+- A real `rigging-viz` web visualizer (separate package).
+- One real-world harness adapter (LangGraph or AutoGen or Goose — picking based on community pull).
 - TLA+ model of the contract-negotiation protocol; liveness and safety checked.
+- A2A-native transport for cross-process rigs.
 
 Full roadmap: [`docs/roadmap.md`](./docs/roadmap.md). Issues tagged `v1` are open.
 
@@ -339,7 +427,7 @@ Full roadmap: [`docs/roadmap.md`](./docs/roadmap.md). Issues tagged `v1` are ope
 
 ## FAQ
 
-The short version is below; the full FAQ lives at [`docs/FAQ.md`](./docs/FAQ.md).
+The short version is below; the full FAQ lives at [`docs/FAQ.md`](./docs/FAQ.md). The vocabulary is at [`docs/glossary.md`](./docs/glossary.md).
 
 <details>
 <summary><strong>Is this a new wire protocol?</strong></summary>
@@ -380,7 +468,7 @@ Cost is a property of a contract, not of an agent. B may subcontract to C only b
 <details>
 <summary><strong>Will you ship a web dashboard?</strong></summary>
 <br/>
-Not in v0. The TUI is sufficient, and the <a href="https://the-rigging-authors.github.io/rigging/">live site</a> is the visual demo. A dedicated <code>rigging-viz</code> is on the v1 roadmap.
+Not in v0. The TUI is sufficient, and the <a href="https://bettyguo.github.io/rigging/">live site</a> is the visual demo. A dedicated <code>rigging-viz</code> is on the v1 roadmap.
 </details>
 
 ---
@@ -403,13 +491,48 @@ ruff check . && mypy packages/  # lint + types
 
 ---
 
+## Deploying the live site
+
+The site at [`site/`](./site/) auto-deploys to GitHub Pages on every push to `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
+
+**First-time deploy** (one-time setup on the repo):
+
+1. **Settings → Pages → Source:** *GitHub Actions*.
+2. Push to `main` (or run the `pages` workflow manually under **Actions**).
+3. The site will be live at `https://<owner>.github.io/rigging/` (for this repo: <https://bettyguo.github.io/rigging/>).
+
+**Local preview:**
+
+```bash
+cd site && python -m http.server 8080
+# then open http://localhost:8080
+```
+
+The site is pure static HTML/CSS/JS — no build step.
+
+---
+
 ## A note on the name
 
 The English word *rigged* has fraudulent connotations. We do not. Throughout this project, *rigging* refers to its **maritime sense**: the load-bearing web of ropes, blocks, and lines on a sailing ship. The sails do not move the ship. The hull does not move the ship. The rigging does.
 
-> *A rig refuses to route against unsigned cards. A rig refuses to issue contracts whose capabilities are undeclared. A rig refuses to retry silently. A rig refuses to attribute cost to anyone other than the contract holder. A rig refuses to admit unverified output as verified.*
+> *A rig refuses to route against unsigned cards. A rig refuses to issue contracts whose capabilities are undeclared. A rig refuses to retry silently. A rig refuses to attribute cost to anyone other than the contract holder. A rig refuses to admit unverified output as verified. A rig refuses to be a marketplace, a scheduler, a router, or a harness.*
 >
 > *The art of this layer is in what it refuses, not in what it provides.*
+
+---
+
+## ⭐ Star history
+
+If this project moves the conversation forward, please star the repo. It is the single highest-signal vote a researcher or maintainer can cast.
+
+<a href="https://star-history.com/#bettyguo/rigging&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bettyguo/rigging&type=Date&theme=dark"/>
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bettyguo/rigging&type=Date"/>
+    <img alt="Star history" src="https://api.star-history.com/svg?repos=bettyguo/rigging&type=Date"/>
+  </picture>
+</a>
 
 ---
 
@@ -417,8 +540,8 @@ The English word *rigged* has fraudulent connotations. We do not. Throughout thi
 
 <sub>Apache 2.0 · © The Rigging Authors · Built for skeptical practitioners and ICLR/NeurIPS reviewers alike.</sub>
 
-<br/>
+<br/><br/>
 
-<sub><strong><a href="https://the-rigging-authors.github.io/rigging/">Live site →</a></strong> · <a href="./CONCEPT.md">CONCEPT.md</a> · <a href="./docs/spec/rig-contract-v0.md">Spec</a> · <a href="./benchmarks/results/v0-reference.md">Benchmarks</a> · <a href="https://github.com/the-rigging-authors/rigging/issues">Issues</a></sub>
+<sub><strong><a href="https://bettyguo.github.io/rigging/">🌊 Live site</a></strong> · <a href="https://bettyguo.github.io/rigging/cheatsheet.html">🧾 Cheatsheet</a> · <a href="./CONCEPT.md">📖 CONCEPT.md</a> · <a href="./docs/spec/rig-contract-v0.md">📐 Spec</a> · <a href="./docs/glossary.md">📕 Glossary</a> · <a href="./benchmarks/results/v0-reference.md">📊 Benchmarks</a> · <a href="https://github.com/bettyguo/rigging/issues">Issues</a></sub>
 
 </div>

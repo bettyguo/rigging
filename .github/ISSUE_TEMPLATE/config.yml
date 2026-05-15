@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
   - name: 📖 Read CONCEPT.md first
-    url: https://github.com/the-rigging-authors/rigging/blob/main/CONCEPT.md
+    url: https://github.com/bettyguo/rigging/blob/main/CONCEPT.md
     about: The long-form essay. Many "is this a bug?" questions are answered here.
   - name: 🔒 Security vulnerabilities
-    url: https://github.com/the-rigging-authors/rigging/security/advisories/new
+    url: https://github.com/bettyguo/rigging/security/advisories/new
     about: Do not file public issues for security reports. Use the private advisories form.
   - name: 💬 Disagree with a design call?
-    url: https://github.com/the-rigging-authors/rigging/blob/main/CONTRIBUTING.md#disagreeing-with-us
+    url: https://github.com/bettyguo/rigging/blob/main/CONTRIBUTING.md#disagreeing-with-us
     about: Draft a counter-ADR. We engage with these.

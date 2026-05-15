@@ -43,7 +43,7 @@ moderate amount of process at the front and almost none at the back.
 ## Setup
 
 ```bash
-git clone https://github.com/the-rigging-authors/rigging
+git clone https://github.com/bettyguo/rigging
 cd rigging
 python -m pip install -e ".[dev]"
 ```

@@ -2,9 +2,12 @@
    rigging — site/script.js
    - copy-to-clipboard
    - interactive blame chain explorer
+   - contract negotiation animation
    ============================================================ */
 (() => {
-  // -------------------- copy buttons --------------------
+  // ============================================================
+  // copy buttons
+  // ============================================================
   document.querySelectorAll('.copy').forEach((btn) => {
     btn.addEventListener('click', async () => {
       try {
@@ -19,11 +22,12 @@
     });
   });
 
-  // -------------------- trace explorer --------------------
+  // ============================================================
+  // trace explorer
+  // ============================================================
   /**
-   * Each scenario is a list of "envelopes" (one per signed span) plus a verdict.
-   * Each envelope: { kind, agent, did, payload, cost, sig, status, tag, proximate? }
-   * status ∈ { 'ok' | 'bad' | 'warn' }
+   * Each scenario: { title, sub, verdict, steps[] }
+   * each step: { kind, agent, did, payload, cost, sig, status, tag, proximate? }
    */
   const SCENARIOS = {
     happy: {
@@ -124,18 +128,18 @@
     },
   };
 
-  const traceList   = document.getElementById('trace-list');
-  const title       = document.getElementById('scenario-title');
-  const sub         = document.getElementById('scenario-sub');
-  const verdict     = document.getElementById('verdict');
-  const scenarios   = document.querySelectorAll('.scenario');
+  const traceList = document.getElementById('trace-list');
+  const tTitle    = document.getElementById('scenario-title');
+  const tSub      = document.getElementById('scenario-sub');
+  const verdict   = document.getElementById('verdict');
+  const scenarios = document.querySelectorAll('.scenario');
 
-  function render(key) {
+  function renderScenario(key) {
     const scn = SCENARIOS[key];
-    if (!scn) return;
+    if (!scn || !traceList) return;
 
-    title.textContent = scn.title;
-    sub.textContent = scn.sub;
+    tTitle.textContent = scn.title;
+    tSub.textContent = scn.sub;
     traceList.innerHTML = '';
 
     scn.steps.forEach((s, i) => {
@@ -162,9 +166,92 @@
     btn.addEventListener('click', () => {
       scenarios.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      render(btn.dataset.scenario);
+      renderScenario(btn.dataset.scenario);
     });
   });
+  if (traceList) renderScenario('happy');
 
-  render('happy');
+  // ============================================================
+  // negotiation animation
+  // ============================================================
+  const negArrows = document.querySelectorAll('.neg-arrow');
+  const negSteps  = document.querySelectorAll('#neg-steps li');
+  const negStep   = document.getElementById('neg-step');
+  const negPlay   = document.getElementById('neg-play');
+  const negReset  = document.getElementById('neg-reset');
+
+  let negCurrent = 0;
+  let negTimer   = null;
+
+  function setNegStep(n) {
+    negCurrent = n;
+    if (negStep) negStep.textContent = String(n);
+
+    negArrows.forEach((g) => {
+      const step = Number(g.dataset.step);
+      g.classList.toggle('visible', step <= n);
+      g.classList.toggle('flashing', step === n);
+    });
+    negSteps.forEach((li, i) => {
+      li.classList.toggle('done', i + 1 < n);
+      li.classList.toggle('current', i + 1 === n);
+    });
+  }
+
+  function playNeg() {
+    if (negTimer) return;
+    if (negCurrent >= 6) setNegStep(0);
+    negTimer = setInterval(() => {
+      const next = negCurrent + 1;
+      if (next > 6) {
+        clearInterval(negTimer); negTimer = null;
+        if (negPlay) negPlay.textContent = '↺ Replay';
+        return;
+      }
+      setNegStep(next);
+    }, 900);
+    if (negPlay) negPlay.textContent = '⏸ Pause';
+  }
+  function pauseNeg() {
+    if (negTimer) { clearInterval(negTimer); negTimer = null; }
+    if (negPlay) negPlay.textContent = '▶ Play';
+  }
+  function resetNeg() {
+    pauseNeg();
+    setNegStep(0);
+    if (negPlay) negPlay.textContent = '▶ Play';
+  }
+
+  if (negPlay) {
+    negPlay.addEventListener('click', () => {
+      if (negTimer) pauseNeg();
+      else playNeg();
+    });
+  }
+  if (negReset) negReset.addEventListener('click', resetNeg);
+  if (negArrows.length) setNegStep(0);
+
+  // ============================================================
+  // intersection-observer fade-in for bands
+  // ============================================================
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: '-40px 0px' }
+    );
+    document.querySelectorAll('.band').forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(12px)';
+      el.style.transition = 'opacity 500ms ease, transform 500ms ease';
+      io.observe(el);
+    });
+  }
 })();

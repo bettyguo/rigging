@@ -2,13 +2,13 @@
 
 Implementation: **rigging-reference** (smoke mode)
 
-Elapsed: 0.037s
+Elapsed: 0.035s
 
 Overall: **0.900**
 
 | Axis | Score | Duration |
 | --- | ---: | ---: |
-| Capability-advertisement fidelity | 0.500 | 0.016s |
+| Capability-advertisement fidelity | 0.500 | 0.015s |
 | Delegation-contract expressiveness | 1.000 | 0.011s |
 | Identity propagation | 1.000 | 0.001s |
 | Cost-attribution accuracy | 1.000 | 0.003s |

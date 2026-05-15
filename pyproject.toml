@@ -43,9 +43,9 @@ dev = [
 rig = "rigging.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/the-rigging-authors/rigging"
-Documentation = "https://github.com/the-rigging-authors/rigging/blob/main/CONCEPT.md"
-Issues = "https://github.com/the-rigging-authors/rigging/issues"
+Homepage = "https://github.com/bettyguo/rigging"
+Documentation = "https://github.com/bettyguo/rigging/blob/main/CONCEPT.md"
+Issues = "https://github.com/bettyguo/rigging/issues"
 
 [build-system]
 requires = ["hatchling>=1.24"]

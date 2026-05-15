@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="Timeline of the agent infrastructure stack 2022–2026">
+  <defs>
+    <linearGradient id="ridge" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="60%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <style>
+      .h     { fill:#f1f5f9; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+      .sub   { fill:#94a3b8; font: 13px ui-monospace, monospace; }
+      .year  { fill:#fbbf24; font: 700 14px ui-monospace, monospace; }
+      .lbl   { fill:#f8fafc; font: 600 16px ui-sans-serif, system-ui, sans-serif; }
+      .desc  { fill:#cbd5e1; font: 12px ui-monospace, monospace; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" fill="#020617"/>
+  <text x="40"  y="42" class="h">The agent stack, named in chronological order.</text>
+  <text x="40"  y="64" class="sub">Each layer was open-coded by every team until someone gave it a name.</text>
+
+  <!-- timeline line -->
+  <line x1="80" y1="200" x2="1140" y2="200" stroke="url(#ridge)" stroke-width="3"/>
+
+  <!-- markers -->
+  <g>
+    <!-- 2022 — LLM API -->
+    <circle cx="160" cy="200" r="9" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+    <text x="160" y="160" text-anchor="middle" class="year">2022</text>
+    <text x="160" y="240" text-anchor="middle" class="lbl">model</text>
+    <text x="160" y="260" text-anchor="middle" class="desc">an inference call</text>
+    <text x="160" y="276" text-anchor="middle" class="desc">no loop, no tools</text>
+
+    <!-- 2023 — Tool-using agents -->
+    <circle cx="360" cy="200" r="9" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+    <text x="360" y="160" text-anchor="middle" class="year">2023</text>
+    <text x="360" y="240" text-anchor="middle" class="lbl">tools</text>
+    <text x="360" y="260" text-anchor="middle" class="desc">function-calling</text>
+    <text x="360" y="276" text-anchor="middle" class="desc">bespoke per provider</text>
+
+    <!-- 2024 — MCP / harness -->
+    <circle cx="560" cy="200" r="9" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="560" y="160" text-anchor="middle" class="year">2024</text>
+    <text x="560" y="240" text-anchor="middle" class="lbl">MCP · harness</text>
+    <text x="560" y="260" text-anchor="middle" class="desc">tool wire format</text>
+    <text x="560" y="276" text-anchor="middle" class="desc">agent loop named</text>
+
+    <!-- 2025 — A2A / supervisors -->
+    <circle cx="760" cy="200" r="9" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+    <text x="760" y="160" text-anchor="middle" class="year">2025</text>
+    <text x="760" y="240" text-anchor="middle" class="lbl">A2A · supervisors</text>
+    <text x="760" y="260" text-anchor="middle" class="desc">agent-to-agent wire</text>
+    <text x="760" y="276" text-anchor="middle" class="desc">in-domain routing</text>
+
+    <!-- 2026 — Rigging -->
+    <circle cx="1000" cy="200" r="14" fill="#0c4a6e" stroke="#fbbf24" stroke-width="3">
+      <animate attributeName="r" values="12;16;12" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <text x="1000" y="158" text-anchor="middle" class="year" font-size="16">2026</text>
+    <text x="1000" y="244" text-anchor="middle" class="lbl" fill="#fde68a">Rigging</text>
+    <text x="1000" y="264" text-anchor="middle" class="desc">cross-domain composition</text>
+    <text x="1000" y="280" text-anchor="middle" class="desc">cards · contracts · blame</text>
+  </g>
+
+  <!-- caption -->
+  <text x="40" y="330" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13">
+    The model was named first. Then the tool surface. Then the agent loop. Then the agent-to-agent wire. The next layer — the typed coupling across trust domains — needs a name too. That layer is rigging.
+  </text>
+</svg>

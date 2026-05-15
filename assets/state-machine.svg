@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420" role="img" aria-label="The contract state machine">
+  <defs>
+    <linearGradient id="sProposed" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="sActive" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+    <linearGradient id="sFulfilled" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#022c22"/>
+    </linearGradient>
+    <linearGradient id="sRejected" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <linearGradient id="sVoided" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <style>
+      .h     { fill:#f1f5f9; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+      .sub   { fill:#94a3b8; font: 13px ui-monospace, monospace; }
+      .name  { fill:#f8fafc; font: 700 16px ui-sans-serif, system-ui, sans-serif; }
+      .desc  { fill:#cbd5e1; font: 11px ui-monospace, monospace; }
+      .arr   { fill:#94a3b8; font: 11px ui-monospace, monospace; }
+    </style>
+    <marker id="arrSM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="420" fill="#020617"/>
+  <text x="40" y="42" class="h">Contract state machine</text>
+  <text x="40" y="62" class="sub">Three terminal states; no edge labelled "silently retry".</text>
+
+  <!-- start dot -->
+  <circle cx="80" cy="200" r="6" fill="#64748b"/>
+  <line x1="86" y1="200" x2="148" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#arrSM)"/>
+
+  <!-- proposed -->
+  <g transform="translate(150,150)">
+    <rect width="180" height="100" rx="14" fill="url(#sProposed)" stroke="#475569"/>
+    <text x="22" y="40" class="name">proposed</text>
+    <text x="22" y="62" class="desc">caller signed</text>
+    <text x="22" y="80" class="desc">awaiting acceptance</text>
+  </g>
+
+  <!-- active -->
+  <g transform="translate(440,150)">
+    <rect width="180" height="100" rx="14" fill="url(#sActive)" stroke="#0ea5e9"/>
+    <text x="22" y="40" class="name">active</text>
+    <text x="22" y="62" class="desc">callee accepted</text>
+    <text x="22" y="80" class="desc">execute · verify · debit</text>
+  </g>
+
+  <!-- fulfilled -->
+  <g transform="translate(870,80)">
+    <rect width="180" height="86" rx="14" fill="url(#sFulfilled)" stroke="#10b981"/>
+    <text x="22" y="40" class="name">fulfilled ✓</text>
+    <text x="22" y="62" class="desc">execute + verify ok</text>
+  </g>
+
+  <!-- rejected -->
+  <g transform="translate(870,200)">
+    <rect width="180" height="86" rx="14" fill="url(#sRejected)" stroke="#ef4444"/>
+    <text x="22" y="40" class="name">rejected ✗</text>
+    <text x="22" y="62" class="desc">callee or verifier rejected</text>
+  </g>
+
+  <!-- voided -->
+  <g transform="translate(870,316)">
+    <rect width="180" height="86" rx="14" fill="url(#sVoided)" stroke="#f59e0b"/>
+    <text x="22" y="40" class="name">voided ⚠</text>
+    <text x="22" y="62" class="desc">expired / overrun / unreachable</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <line x1="330" y1="200" x2="436" y2="200" marker-end="url(#arrSM)"/>
+    <text x="350" y="190" class="arr">accept</text>
+
+    <line x1="240" y1="250" x2="240" y2="360" marker-end="url(#arrSM)"/>
+    <line x1="240" y1="360" x2="866" y2="360" marker-end="url(#arrSM)"/>
+    <text x="250" y="356" class="arr">expires before accept · void</text>
+
+    <line x1="240" y1="250" x2="240" y2="320" />
+    <line x1="240" y1="320" x2="866" y2="320" stroke-dasharray="0" marker-end="url(#arrSM)"/>
+    <text x="250" y="312" class="arr">callee rejects · → rejected</text>
+
+    <path d="M620 175 C 720 175, 760 120, 866 120" marker-end="url(#arrSM)"/>
+    <text x="660" y="130" class="arr">execute + verify ✓</text>
+
+    <path d="M620 200 C 720 200, 760 240, 866 240" marker-end="url(#arrSM)"/>
+    <text x="660" y="220" class="arr">verifier rejects</text>
+
+    <path d="M620 230 C 720 230, 760 350, 866 355" marker-end="url(#arrSM)"/>
+    <text x="660" y="280" class="arr">overrun · expiry · unreachable</text>
+  </g>
+</svg>

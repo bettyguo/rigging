@@ -26,11 +26,15 @@
       <a href="#why">Why</a>
       <a href="#how">How</a>
       <a href="#explorer">Live trace</a>
+      <a href="#negotiation">Negotiation</a>
+      <a href="#cost">Cost</a>
       <a href="#examples">Examples</a>
-      <a href="#bench">Benchmarks</a>
+      <a href="#bench">Bench</a>
       <a href="#compare">vs.</a>
+      <a href="#timeline">Why now?</a>
       <a href="#faq">FAQ</a>
-      <a class="cta" href="https://github.com/the-rigging-authors/rigging" target="_blank" rel="noopener">GitHub →</a>
+      <a href="./cheatsheet.html">Cheatsheet</a>
+      <a class="cta" href="https://github.com/bettyguo/rigging" target="_blank" rel="noopener">GitHub →</a>
     </nav>
   </div>
 </header>
@@ -50,7 +54,7 @@
         Signed cards. Delegation contracts. Mechanical blame.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="https://github.com/the-rigging-authors/rigging" target="_blank" rel="noopener">★ Star on GitHub</a>
+        <a class="btn btn-primary" href="https://github.com/bettyguo/rigging" target="_blank" rel="noopener">★ Star on GitHub</a>
         <a class="btn btn-ghost" href="#explorer">See a live trace ↓</a>
       </div>
       <div class="install">
@@ -76,6 +80,20 @@
   <div class="marquee-track">
     <span>cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · </span>
     <span>cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · cards refuse · contracts sign · blame propagates · </span>
+  </div>
+</section>
+
+<!-- ===================== QUOTE PULLQUOTE ===================== -->
+<section class="band pullquote">
+  <div class="container">
+    <blockquote class="quote">
+      <p>
+        “You can have a great harness on every agent and still
+        have <em>terrible rigging</em>.<br/>
+        If you’re not the model, and you’re not the harness, you’re the rigging.”
+      </p>
+      <footer>— <code>CONCEPT.md</code></footer>
+    </blockquote>
   </div>
 </section>
 
@@ -137,7 +155,7 @@ return out</code></pre>
         silently fix things</em>. A friendly system absorbs partial failure
         and gives the caller a working answer. A friendly system also
         destroys the chain of evidence that blame attribution depends on.
-        <a href="https://github.com/the-rigging-authors/rigging/blob/main/CONCEPT.md">Keep reading →</a>
+        <a href="https://github.com/bettyguo/rigging/blob/main/CONCEPT.md">Keep reading →</a>
       </p>
     </details>
   </div>
@@ -185,37 +203,211 @@ return out</code></pre>
   </div>
 </section>
 
-<!-- ===================== EXAMPLES ===================== -->
-<section id="examples" class="band band-dark">
+<!-- ===================== NEGOTIATION ANIMATION ===================== -->
+<section id="negotiation" class="band band-dark">
   <div class="container">
-    <p class="eyebrow">Four runnable examples · offline · no API keys</p>
+    <p class="eyebrow">Interactive · press <kbd>▶</kbd></p>
+    <h2>Watch a contract become a trace.</h2>
+    <p class="muted">
+      Six steps. Each one is a checkpoint at which the rig can refuse.
+      No animation magic — every box is a span the runtime actually emits.
+    </p>
+
+    <div class="negotiation">
+      <div class="neg-stage">
+        <svg viewBox="0 0 760 360" class="neg-svg" aria-hidden="true">
+          <!-- two participants + rig in the middle -->
+          <defs>
+            <linearGradient id="ng-card" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#1e293b"/>
+              <stop offset="100%" stop-color="#0f172a"/>
+            </linearGradient>
+          </defs>
+
+          <!-- swim lanes -->
+          <g stroke="#1e293b" stroke-dasharray="4 4">
+            <line x1="80"  y1="50" x2="80"  y2="340"/>
+            <line x1="380" y1="50" x2="380" y2="340"/>
+            <line x1="680" y1="50" x2="680" y2="340"/>
+          </g>
+
+          <!-- participant headers -->
+          <g font-family="ui-monospace, monospace" font-size="12">
+            <rect x="20"  y="22" width="120" height="28" rx="14" fill="url(#ng-card)" stroke="#38bdf8"/>
+            <text x="80"  y="40" text-anchor="middle" fill="#e2e8f0">caller · A</text>
+
+            <rect x="320" y="22" width="120" height="28" rx="14" fill="url(#ng-card)" stroke="#22d3ee"/>
+            <text x="380" y="40" text-anchor="middle" fill="#e2e8f0">rig · runtime</text>
+
+            <rect x="620" y="22" width="120" height="28" rx="14" fill="url(#ng-card)" stroke="#fbbf24"/>
+            <text x="680" y="40" text-anchor="middle" fill="#e2e8f0">callee · B</text>
+          </g>
+
+          <!-- arrows (revealed by class on parent) -->
+          <g id="neg-arrows" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">
+            <g class="neg-arrow" data-step="1">
+              <line x1="80"  y1="90"  x2="370" y2="90"  stroke="#38bdf8" stroke-width="2" marker-end="url(#mEnd)"/>
+              <text x="220" y="80" text-anchor="middle">rig.call(B, cap, budget)</text>
+            </g>
+            <g class="neg-arrow" data-step="2">
+              <line x1="380" y1="135" x2="670" y2="135" stroke="#22d3ee" stroke-width="2" marker-end="url(#mEnd)"/>
+              <text x="525" y="125" text-anchor="middle">contract.propose · sig(A) ✓</text>
+            </g>
+            <g class="neg-arrow" data-step="3">
+              <line x1="680" y1="180" x2="390" y2="180" stroke="#10b981" stroke-width="2" marker-end="url(#mEnd)"/>
+              <text x="525" y="170" text-anchor="middle">contract.accept · sig(B) ✓</text>
+            </g>
+            <g class="neg-arrow" data-step="4">
+              <line x1="380" y1="225" x2="670" y2="225" stroke="#22d3ee" stroke-width="2" marker-end="url(#mEnd)"/>
+              <text x="525" y="215" text-anchor="middle">execute(contract)</text>
+            </g>
+            <g class="neg-arrow" data-step="5">
+              <line x1="680" y1="270" x2="390" y2="270" stroke="#fbbf24" stroke-width="2" marker-end="url(#mEnd)"/>
+              <text x="525" y="260" text-anchor="middle">output · sig(B) · cost=usd 0.12</text>
+            </g>
+            <g class="neg-arrow" data-step="6">
+              <line x1="380" y1="315" x2="90"  y2="315" stroke="#a7f3d0" stroke-width="2" marker-end="url(#mEnd)"/>
+              <text x="220" y="305" text-anchor="middle">ExecuteResult + trace</text>
+            </g>
+          </g>
+
+          <defs>
+            <marker id="mEnd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+            </marker>
+          </defs>
+        </svg>
+
+        <div class="neg-controls">
+          <button class="btn btn-ghost" id="neg-play">▶ Play</button>
+          <button class="btn btn-ghost" id="neg-reset">↺ Reset</button>
+          <span class="muted small">step <strong id="neg-step">0</strong>/6</span>
+        </div>
+      </div>
+
+      <aside class="neg-side">
+        <h4>What the runtime actually does at this step</h4>
+        <ol class="neg-steps" id="neg-steps">
+          <li><strong>Caller invokes <code>rig.call(...)</code>.</strong> The rig validates the callee's card and the requested capability.</li>
+          <li><strong>The rig signs a draft contract with the caller's key</strong> and proposes it to the callee.</li>
+          <li><strong>The callee accepts</strong> (or rejects with a reason code). The acceptance is signed by the callee.</li>
+          <li><strong>The rig invokes <code>execute</code></strong> on the callee under a cancel scope bounded by <code>contract.expires</code>.</li>
+          <li><strong>The callee returns a signed output envelope.</strong> The rig debits cost against the contract.</li>
+          <li><strong>The operator receives an <code>ExecuteResult</code></strong> plus a complete signed trace, ready to inspect.</li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COST ATTRIBUTION ===================== -->
+<section id="cost" class="band">
+  <div class="container">
+    <p class="eyebrow">Why budgets compose</p>
+    <h2>Sub-budgets are carved, not borrowed.</h2>
+    <p class="muted">
+      Cost is a property of a <em>contract</em>, not of an agent.
+      B may subcontract to C only by carving a sub-budget from B's own
+      allocation. C's overruns hit B's ledger; A's budget is inviolable.
+    </p>
+    <img class="full" src="./assets/cost-waterfall.svg" alt="Cost attribution waterfall — A → B → C" />
+    <p class="muted small">
+      The agentic version of letting a subcontractor put arbitrary charges
+      on the general contractor's credit card is exactly what
+      cost-as-an-agent-property allows. Rigging refuses it structurally.
+      See <a href="https://github.com/bettyguo/rigging/blob/main/docs/adr/0006-explicit-budget-propagation.md">ADR-0006</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== STATE MACHINE ===================== -->
+<section class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">No edge labelled "silently retry"</p>
+    <h2>Every contract terminates explicitly.</h2>
+    <img class="full" src="./assets/state-machine.svg" alt="Contract state machine" />
+    <p class="muted small">
+      Terminal states are <strong>fulfilled</strong>, <strong>rejected</strong>, and <strong>voided</strong>.
+      Retries are first-class events with their own contracts and their own
+      identifiers, because a retry against a fresh callee produces output
+      signed by an identity the caller did not address. See
+      <a href="https://github.com/bettyguo/rigging/blob/main/docs/adr/0009-no-silent-retries.md">ADR-0009</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== EXAMPLES ===================== -->
+<section id="examples" class="band">
+  <div class="container">
+    <p class="eyebrow">Five runnable examples · offline · no API keys</p>
     <h2>From "hello, rig" to adversarial sub-agents.</h2>
     <div class="cards">
-      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/01_two_agent_handoff">
+      <a class="card" href="https://github.com/bettyguo/rigging/tree/main/examples/01_two_agent_handoff">
         <span class="card-num">01</span>
         <h3>Two-agent handoff</h3>
         <p>The minimum viable rig. A planner delegates to a worker. One signed contract; one execute; one verify.</p>
       </a>
-      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/02_three_vendor_rig">
+      <a class="card" href="https://github.com/bettyguo/rigging/tree/main/examples/02_three_vendor_rig">
         <span class="card-num">02</span>
         <h3>Three-vendor rig</h3>
         <p>Heterogeneous composition: a planner (Anthropic), a coder (OpenAI), a reviewer (local). Same rig.</p>
       </a>
-      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/03_adversarial_subagent">
+      <a class="card" href="https://github.com/bettyguo/rigging/tree/main/examples/03_adversarial_subagent">
         <span class="card-num">03</span>
         <h3>Adversarial sub-agent</h3>
         <p>The worker is deliberately bad. The verifier catches it. The blame chain points unambiguously at the worker.</p>
       </a>
-      <a class="card" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/04_cost_attribution">
+      <a class="card" href="https://github.com/bettyguo/rigging/tree/main/examples/04_cost_attribution">
         <span class="card-num">04</span>
         <h3>Cost attribution</h3>
         <p>A → B → C with explicit sub-budgets. C overruns. A's budget is unaffected. Cost has a defensible answer.</p>
       </a>
-      <a class="card extra" href="https://github.com/the-rigging-authors/rigging/tree/main/examples/05_vote_ensemble">
+      <a class="card extra" href="https://github.com/bettyguo/rigging/tree/main/examples/05_vote_ensemble">
         <span class="card-num">05</span>
         <h3>Vote ensemble verifier</h3>
         <p>Three verifiers, majority rules. Disagreement becomes a composition problem, not a runtime problem.</p>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CASE STUDIES ===================== -->
+<section id="cases" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">Three teams, three problems</p>
+    <h2>Where a rig saves your weekend.</h2>
+    <p class="muted">
+      Synthesised from real conversations with practitioners. Names and
+      numbers redacted; the patterns are the patterns.
+    </p>
+
+    <div class="case-grid">
+      <article class="case">
+        <header>
+          <span class="case-tag">finops</span>
+          <h3>The runaway subcontractor</h3>
+        </header>
+        <p><strong>Before:</strong> A planner agent at a fintech ramped a research subtask onto a chain of three reasoning subagents. One agent silently spun off a sibling that re-issued the same query in a retry loop. <em>$8,400 in token spend</em> on one task before alerting fired.</p>
+        <p><strong>With rigging:</strong> The retry would have been a new contract, with its own signed identifier. The sibling's budget would have been a carved sub-allocation from the parent. The runaway would have hit <code>BudgetOverrun</code> after <code>$0.50</code>, not <code>$8,400</code>.</p>
+      </article>
+
+      <article class="case">
+        <header>
+          <span class="case-tag">incident-response</span>
+          <h3>The 3 AM "which agent broke it"</h3>
+        </header>
+        <p><strong>Before:</strong> A code-review pipeline composed of four agents from three vendors auto-merged a regression. The post-mortem took six engineers eight hours to attribute fault — three of the agents were running in different repos, with non-aligned trace formats.</p>
+        <p><strong>With rigging:</strong> One trace. One blame chain. <code>rig trace inspect</code> would have named the reviewer agent whose verdict was wrong, with its signed envelope as the proof. Six engineer-hours back.</p>
+      </article>
+
+      <article class="case">
+        <header>
+          <span class="case-tag">compliance</span>
+          <h3>The "who said what" audit</h3>
+        </header>
+        <p><strong>Before:</strong> A regulated-industry customer asked: "for last month's automated decisions, prove which agent made each call and under what budget." The team spent two weeks reconstructing it from logs.</p>
+        <p><strong>With rigging:</strong> Every decision is a signed contract; every output is a signed envelope; the trace is the audit. The same question becomes <code>SELECT * FROM traces WHERE …</code> against the OpenTelemetry backend.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -312,12 +504,28 @@ return out</code></pre>
   </div>
 </section>
 
+<!-- ===================== TIMELINE ===================== -->
+<section id="timeline" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">Why this layer needs a name in 2026</p>
+    <h2>The agent stack, named in chronological order.</h2>
+    <img class="full" src="./assets/timeline.svg" alt="Timeline 2022 → 2026 — model · tools · MCP · A2A · rigging" />
+    <p class="muted small">
+      Every layer in this stack was open-coded by every team before it had
+      a name. Kubernetes was the loop your ops engineer ran in tmux.
+      MCP was a function called <code>call_tool()</code> in five styles.
+      A2A was a hand-written REST shim. The layer that comes next — the
+      typed coupling across trust domains — needs a name too.
+    </p>
+  </div>
+</section>
+
 <!-- ===================== CODE WALKTHROUGH ===================== -->
-<section id="code" class="band band-dark">
+<section id="code" class="band">
   <div class="container">
     <p class="eyebrow">One screen of code</p>
     <h2>What a rig run actually looks like.</h2>
-<pre class="code-block"><code><span class="cmt"># build a rig and register two agents</span>
+<pre class="code-block"><code><span class="cmt"># build a rig and register three agents</span>
 <span class="kw">from</span> rigging.runtime <span class="kw">import</span> Rig
 <span class="kw">from</span> rigging.adapters <span class="kw">import</span> LocalPythonAdapter
 <span class="kw">from</span> rigging.identity <span class="kw">import</span> KeyPair
@@ -348,6 +556,15 @@ trace.write(<span class="str">"trace.json"</span>)</code></pre>
   </div>
 </section>
 
+<!-- ===================== REFUSALS ===================== -->
+<section class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">The art of this layer is in what it refuses</p>
+    <h2>Six refusals.</h2>
+    <img class="full" src="./assets/refusals.svg" alt="The six refusals: cards, contracts, retries, cost, verification, scope" />
+  </div>
+</section>
+
 <!-- ===================== FAQ ===================== -->
 <section id="faq" class="band">
   <div class="container">
@@ -360,7 +577,7 @@ trace.write(<span class="str">"trace.json"</span>)</code></pre>
       </details>
       <details>
         <summary>Is the verifier privileged?</summary>
-        <p>No — and we tried that first. A verifier is just an agent whose card declares a <code>verify</code> capability. The runtime invariants apply to it uniformly. Disagreement becomes a composition problem (vote, recurse), not a runtime problem. See <a href="https://github.com/the-rigging-authors/rigging/blob/main/docs/adr/0007-verifier-as-agent.md">ADR-0007</a>.</p>
+        <p>No — and we tried that first. A verifier is just an agent whose card declares a <code>verify</code> capability. The runtime invariants apply to it uniformly. Disagreement becomes a composition problem (vote, recurse), not a runtime problem. See <a href="https://github.com/bettyguo/rigging/blob/main/docs/adr/0007-verifier-as-agent.md">ADR-0007</a>.</p>
       </details>
       <details>
         <summary>Why no silent retries?</summary>
@@ -376,7 +593,7 @@ trace.write(<span class="str">"trace.json"</span>)</code></pre>
       </details>
       <details>
         <summary>How do you stop one caller from putting charges on another caller's card?</summary>
-        <p>Cost is a property of a contract, not of an agent. B may subcontract to C only by carving a sub-budget from its own allocation. C's overruns hit B's ledger; A's budget is inviolable. See <a href="https://github.com/the-rigging-authors/rigging/blob/main/docs/adr/0006-explicit-budget-propagation.md">ADR-0006</a>.</p>
+        <p>Cost is a property of a contract, not of an agent. B may subcontract to C only by carving a sub-budget from its own allocation. C's overruns hit B's ledger; A's budget is inviolable. See <a href="https://github.com/bettyguo/rigging/blob/main/docs/adr/0006-explicit-budget-propagation.md">ADR-0006</a>.</p>
       </details>
       <details>
         <summary>Will you ship a web dashboard?</summary>
@@ -396,9 +613,10 @@ trace.write(<span class="str">"trace.json"</span>)</code></pre>
     <h2>Build a system, not a stack of agents.</h2>
     <p class="muted">Star it on GitHub. Run the four examples. File an issue. We answer.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/the-rigging-authors/rigging" target="_blank" rel="noopener">★ Star on GitHub</a>
-      <a class="btn btn-ghost" href="https://github.com/the-rigging-authors/rigging/blob/main/CONCEPT.md" target="_blank" rel="noopener">Read CONCEPT.md</a>
-      <a class="btn btn-ghost" href="https://github.com/the-rigging-authors/rigging/blob/main/docs/spec/rig-contract-v0.md" target="_blank" rel="noopener">Read the spec</a>
+      <a class="btn btn-primary" href="https://github.com/bettyguo/rigging" target="_blank" rel="noopener">★ Star on GitHub</a>
+      <a class="btn btn-ghost" href="https://github.com/bettyguo/rigging/blob/main/CONCEPT.md" target="_blank" rel="noopener">Read CONCEPT.md</a>
+      <a class="btn btn-ghost" href="https://github.com/bettyguo/rigging/blob/main/docs/spec/rig-contract-v0.md" target="_blank" rel="noopener">Read the spec</a>
+      <a class="btn btn-ghost" href="./cheatsheet.html">Cheatsheet</a>
     </div>
   </div>
 </section>
