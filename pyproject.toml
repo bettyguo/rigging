@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "pydantic>=2.6",
+    "pydantic>=2.13.4",
     "anyio>=4.3",
     "cryptography>=42.0",
     "opentelemetry-api>=1.24",
