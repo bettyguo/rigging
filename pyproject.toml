@@ -28,7 +28,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-adapters = ["litellm>=1.35"]
+adapters = ["litellm>=1.84.0"]
 dev = [
     "pytest>=8.0",
     "hypothesis>=6.99",
