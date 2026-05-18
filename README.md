@@ -497,22 +497,32 @@ ruff check . && mypy packages/  # lint + types
 
 ## Deploying the live site
 
-The site at [`site/`](./site/) auto-deploys to GitHub Pages on every push to `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
+The site at [`site/`](./site/) auto-deploys to GitHub Pages on every push to `main` via [`.github/workflows/pages.yml`](.github/workflows/pages.yml). The workflow uses `enablement: true` so it auto-creates the Pages site on its **first successful run** — no Settings step required.
 
-**First-time deploy** (one-time setup on the repo):
-
-1. **Settings → Pages → Source:** *GitHub Actions*.
-2. Push to `main` (or run the `pages` workflow manually under **Actions**).
-3. The site will be live at `https://<owner>.github.io/rigging/` (for this repo: <https://bettyguo.github.io/rigging/>).
-
-**Local preview:**
+**First time:** run the `pages` workflow once. Either way works:
 
 ```bash
-cd site && python -m http.server 8080
-# then open http://localhost:8080
+# via the GitHub CLI
+gh workflow run pages.yml --repo bettyguo/rigging
+
+# OR via the GitHub UI:  Repo → Actions → "pages" → Run workflow
 ```
 
-The site is pure static HTML/CSS/JS — no build step.
+Then wait ~60–90 seconds. The site comes up at <https://bettyguo.github.io/rigging/>.
+
+**Local preview** (pure static — no build):
+
+```bash
+cd site && python -m http.server 8080  # then open http://localhost:8080
+```
+
+**Auditing every internal link** (also runs in CI):
+
+```bash
+python scripts/audit_links.py --strict
+```
+
+Full troubleshooting at [`DEPLOY.md`](./DEPLOY.md).
 
 ---
 

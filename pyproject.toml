@@ -43,9 +43,13 @@ dev = [
 rig = "rigging.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/bettyguo/rigging"
+Homepage      = "https://bettyguo.github.io/rigging/"
+Repository    = "https://github.com/bettyguo/rigging"
 Documentation = "https://github.com/bettyguo/rigging/blob/main/CONCEPT.md"
-Issues = "https://github.com/bettyguo/rigging/issues"
+Changelog     = "https://github.com/bettyguo/rigging/blob/main/CHANGELOG.md"
+Issues        = "https://github.com/bettyguo/rigging/issues"
+Specs         = "https://github.com/bettyguo/rigging/tree/main/docs/spec"
+Cheatsheet    = "https://bettyguo.github.io/rigging/cheatsheet.html"
 
 [build-system]
 requires = ["hatchling>=1.24"]
