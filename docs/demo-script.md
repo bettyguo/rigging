@@ -14,7 +14,7 @@ Terminal opens. `pwd` shows a fresh directory. Run `git clone` and
 `cd`:
 
 ```bash
-git clone https://github.com/<your-fork>/rigging
+git clone https://github.com/bettyguo/rigging
 cd rigging
 python -m pip install -e . pydantic anyio cryptography typer rich \
     structlog opentelemetry-sdk pytest hypothesis pytest-anyio

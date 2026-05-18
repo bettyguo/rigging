@@ -54,9 +54,11 @@ public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behaviour may
-be reported to the maintainers at **conduct@rigging.dev** (placeholder —
-replace with an active address before public launch). All complaints
-will be reviewed and investigated promptly and fairly.
+be reported privately to the maintainers via
+[**GitHub Security Advisories**](https://github.com/bettyguo/rigging/security/advisories/new)
+(select category *Other* if Conduct is not listed) or by opening a
+[private Discussion](https://github.com/bettyguo/rigging/discussions).
+All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security
 of the reporter of any incident.

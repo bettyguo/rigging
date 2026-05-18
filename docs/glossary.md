@@ -9,7 +9,7 @@
 **Agent-to-agent** wire protocol. A peer protocol for agents to talk to
 other agents. Rigging *uses* A2A as one possible envelope format for
 contracts; it does not redefine it. See
-[`docs/related-work.md`](./related-work.md#a2a).
+[`docs/related-work.md`](./related-work.md).
 
 ### Adapter
 A small module that bridges an existing harness or runtime into the rig,
@@ -93,7 +93,7 @@ with the `EdDSA` algorithm.
 **Model Context Protocol** (Anthropic). The wire format between an agent
 and its tools. Rigging *uses* MCP — every MCP server can be exposed as a
 rig participant via `MCPAdapter` — but does not redefine it. See
-[`docs/related-work.md`](./related-work.md#mcp).
+[`docs/related-work.md`](./related-work.md).
 
 ### Proximate cause
 The first envelope walked backwards from a failure whose contents, if

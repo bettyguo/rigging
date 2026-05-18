@@ -10,10 +10,12 @@ The typed, trust-bearing, schema-mediated coupling layer that composes
 heterogeneous harnessed agents into a single coherent system.
 
 <p>
-  <img src="https://img.shields.io/badge/tests-76%20passing-10b981?style=for-the-badge&labelColor=0b1220&logo=pytest&logoColor=22d3ee" alt="76 tests passing"/>
-  <img src="https://img.shields.io/badge/license-Apache--2.0-22d3ee?style=for-the-badge&labelColor=0b1220" alt="Apache 2.0"/>
-  <img src="https://img.shields.io/badge/python-3.12%2B-38bdf8?style=for-the-badge&labelColor=0b1220&logo=python&logoColor=38bdf8" alt="Python 3.12+"/>
-  <img src="https://img.shields.io/badge/status-v0%20reference-fbbf24?style=for-the-badge&labelColor=0b1220" alt="v0 reference"/>
+  <a href="https://github.com/bettyguo/rigging/actions/workflows/ci.yml"><img src="https://github.com/bettyguo/rigging/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
+  <a href="https://github.com/bettyguo/rigging/actions/workflows/pages.yml"><img src="https://github.com/bettyguo/rigging/actions/workflows/pages.yml/badge.svg" alt="Pages deploy"/></a>
+  <img src="https://img.shields.io/badge/tests-76%20passing-10b981?style=flat-square&labelColor=0b1220&logo=pytest&logoColor=22d3ee" alt="76 tests passing"/>
+  <img src="https://img.shields.io/badge/license-Apache--2.0-22d3ee?style=flat-square&labelColor=0b1220" alt="Apache 2.0"/>
+  <img src="https://img.shields.io/badge/python-3.12%2B-38bdf8?style=flat-square&labelColor=0b1220&logo=python&logoColor=38bdf8" alt="Python 3.12+"/>
+  <img src="https://img.shields.io/badge/status-v0%20reference-fbbf24?style=flat-square&labelColor=0b1220" alt="v0 reference"/>
 </p>
 
 <p>
@@ -41,7 +43,9 @@ heterogeneous harnessed agents into a single coherent system.
 > **🌊 Want to see it work first?** The [**live site**](https://bettyguo.github.io/rigging/) has two interactive demos:
 > a **blame-chain explorer** (pick a failure, watch the runtime extract the proximate cause)
 > and a **contract negotiation animation** (six steps; press ▶).
-> If the URL 404s, the site hasn't been deployed yet — see [§ Deploying the live site](#deploying-the-live-site).
+>
+> **First-time setup:** the site auto-deploys via [`pages.yml`](.github/workflows/pages.yml),
+> but a maintainer has to trigger the workflow once. See [`DEPLOY.md`](./DEPLOY.md) — it's one command.
 
 ---
 

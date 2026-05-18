@@ -33,3 +33,6 @@ jobs:
           PYTHONPATH: >-
             packages/rigging-core/src:packages/rigging-identity/src:packages/rigging-trace/src:packages/rigging-adapters/src:packages/rigging-runtime/src:.
         run: python -m benchmarks.rig_bench.run
+
+      - name: Audit internal links
+        run: python scripts/audit_links.py --no-color --strict
