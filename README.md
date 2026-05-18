@@ -12,10 +12,11 @@ heterogeneous harnessed agents into a single coherent system.
 <p>
   <a href="https://github.com/bettyguo/rigging/actions/workflows/ci.yml"><img src="https://github.com/bettyguo/rigging/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
   <a href="https://github.com/bettyguo/rigging/actions/workflows/pages.yml"><img src="https://github.com/bettyguo/rigging/actions/workflows/pages.yml/badge.svg" alt="Pages deploy"/></a>
-  <img src="https://img.shields.io/badge/tests-76%20passing-10b981?style=flat-square&labelColor=0b1220&logo=pytest&logoColor=22d3ee" alt="76 tests passing"/>
+  <img src="https://img.shields.io/badge/tests-97%20passing-10b981?style=flat-square&labelColor=0b1220&logo=pytest&logoColor=22d3ee" alt="97 tests passing"/>
   <img src="https://img.shields.io/badge/license-Apache--2.0-22d3ee?style=flat-square&labelColor=0b1220" alt="Apache 2.0"/>
   <img src="https://img.shields.io/badge/python-3.12%2B-38bdf8?style=flat-square&labelColor=0b1220&logo=python&logoColor=38bdf8" alt="Python 3.12+"/>
   <img src="https://img.shields.io/badge/status-v0%20reference-fbbf24?style=flat-square&labelColor=0b1220" alt="v0 reference"/>
+  <img src="https://img.shields.io/badge/examples-6%20runnable-a78bfa?style=flat-square&labelColor=0b1220" alt="6 runnable examples"/>
 </p>
 
 <p>
@@ -40,12 +41,20 @@ heterogeneous harnessed agents into a single coherent system.
 </div>
 
 > [!NOTE]
-> **🌊 Want to see it work first?** The [**live site**](https://bettyguo.github.io/rigging/) has two interactive demos:
-> a **blame-chain explorer** (pick a failure, watch the runtime extract the proximate cause)
-> and a **contract negotiation animation** (six steps; press ▶).
+> **🌊 Want to see it work first?** The [**live site**](https://bettyguo.github.io/rigging/) has three interactive demos:
+> a **blame-chain explorer** (pick a failure, watch the runtime extract the proximate cause),
+> a **contract negotiation animation** (six steps; press ▶),
+> and a **cost-attribution simulator** (drag the sliders; watch where the overrun lands).
 >
 > **First-time setup:** the site auto-deploys via [`pages.yml`](.github/workflows/pages.yml),
 > but a maintainer has to trigger the workflow once. See [`DEPLOY.md`](./DEPLOY.md) — it's one command.
+
+> [!TIP]
+> **Curated by [Betty Guo](https://bettyguo.github.io) ([Dongxin Guo](https://bettyguo.github.io))** —
+> PhD candidate in Computer Science at [The University of Hong Kong](https://www.cs.hku.hk/),
+> advised by [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu).
+> Rigging is the reference implementation of a concept she has been developing through her PhD.
+> See [§ Curator and citation](#curator-and-citation) for how to cite.
 
 ---
 
@@ -56,10 +65,11 @@ heterogeneous harnessed agents into a single coherent system.
 <tr><td><a href="#60-second-quickstart">⚡ 60-second quickstart</a></td><td><a href="#why-now">📅 Why now?</a></td></tr>
 <tr><td><a href="#the-three-primitives">① Cards · ② Contracts · ③ Blame</a></td><td><a href="#use-cases-where-a-rig-saves-your-weekend">💼 Use cases</a></td></tr>
 <tr><td><a href="#what-it-looks-like-in-practice">🧑‍💻 What it looks like</a></td><td><a href="#rigging-vs-mcp-a2a-harnesses-supervisors">⚖️ Rigging vs.</a></td></tr>
-<tr><td><a href="#the-five-runnable-examples">📚 Five examples</a></td><td><a href="#architecture">🏗 Architecture</a></td></tr>
+<tr><td><a href="#the-six-runnable-examples">📚 Six examples</a></td><td><a href="#architecture">🏗 Architecture</a></td></tr>
 <tr><td><a href="#cost-attribution-that-actually-attributes">💰 Cost attribution</a></td><td><a href="#rigging-bench-v0">📊 Rigging-Bench v0</a></td></tr>
-<tr><td><a href="#the-six-refusals">🚫 The six refusals</a></td><td><a href="#repository-layout">📁 Repo layout</a></td></tr>
-<tr><td><a href="#roadmap">🗺 Roadmap</a></td><td><a href="#faq">❓ FAQ</a></td></tr>
+<tr><td><a href="#the-six-refusals">🚫 The six refusals</a></td><td><a href="#the-rig-cli">⌨️ The <code>rig</code> CLI</a></td></tr>
+<tr><td><a href="#repository-layout">📁 Repo layout</a></td><td><a href="#roadmap">🗺 Roadmap</a></td></tr>
+<tr><td><a href="#faq">❓ FAQ</a></td><td><a href="#curator-and-citation">🎓 Curator and citation</a></td></tr>
 <tr><td><a href="#contributing">🤝 Contributing</a></td><td><a href="#deploying-the-live-site">🚢 Deploy live site</a></td></tr>
 </table>
 
@@ -260,7 +270,7 @@ A longer survey is at [`docs/related-work.md`](./docs/related-work.md), with an 
 
 ---
 
-## The five runnable examples
+## The six runnable examples
 
 Each runs offline. No API keys, no network. Each has its own `README.md`.
 
@@ -271,6 +281,7 @@ Each runs offline. No API keys, no network. Each has its own `README.md`.
 | <kbd>**03**</kbd> | [`03_adversarial_subagent`](./examples/03_adversarial_subagent/) | Compositional reliability — verifier catches the bad worker; blame chain names it. |
 | <kbd>**04**</kbd> | [`04_cost_attribution`](./examples/04_cost_attribution/) | A → B → C with explicit sub-budgets; C overruns; A's budget is inviolable. |
 | <kbd>**05**</kbd> | [`05_vote_ensemble`](./examples/05_vote_ensemble/) | Three verifiers; majority rules. Disagreement is a composition problem, not a runtime problem. |
+| <kbd>**06**</kbd> | [`06_recursive_verification`](./examples/06_recursive_verification/) | A verifier's verdict is itself audited by a meta-verifier. Recursion is bounded by `verification_recursion_cap`. |
 
 ```bash
 rig run 01-two-agent-handoff       # short
@@ -278,9 +289,10 @@ rig run 02-three-vendor-rig
 rig run 03-adversarial-subagent
 rig run 04-cost-attribution
 rig run 05-vote-ensemble
+rig run 06-recursive-verification  # new in v0.2
 ```
 
-An annotated walkthrough of all five with sequence diagrams and "the invariant exercised" callouts is at [`docs/EXAMPLES.md`](./docs/EXAMPLES.md).
+An annotated walkthrough of all six with sequence diagrams and "the invariant exercised" callouts is at [`docs/EXAMPLES.md`](./docs/EXAMPLES.md).
 
 ---
 
@@ -330,7 +342,7 @@ graph LR
     TRACE[rigging-trace<br/>OTel processor · blame extractor]
     ADAPT[rigging-adapters<br/>LiteLLM · MCP · Local]
     RUN[rigging-runtime<br/>Rig orchestrator · state machine]
-    CLI[rig CLI<br/>identity · run · trace · bench]
+    CLI[rig CLI<br/>identity · run · trace · bench · doctor · card · contract]
 
     IDENT --> CORE
     TRACE --> CORE
@@ -377,6 +389,34 @@ Methodology: [`docs/benchmarks/rigging-completeness-matrix.md`](./docs/benchmark
 
 ---
 
+## The `rig` CLI
+
+A single entry point. Every subcommand is read-only or local-only — nothing it does requires network or credentials.
+
+```bash
+rig --help                                # discoverable surface
+rig doctor                                # audit env: Python, deps, packages, repo
+rig examples                              # list all 6 built-in examples
+rig version                               # show installed rigging version
+
+rig identity create --passphrase-env RIG_PASS
+rig identity show ./rig.key --passphrase-env RIG_PASS
+rig identity verify ./agent.json
+
+rig card show ./agent-card.json           # pretty-print + verify signature
+rig contract show ./contract.json         # pretty-print a signed contract
+rig spec validate ./agent-card.json       # validate against the v0 schema
+
+rig run 06-recursive-verification         # run any of the six examples
+rig trace inspect ./trace.json            # pretty trace + blame chain
+rig bench                                 # smoke benchmark (< 1 min)
+rig bench --full                          # full Rigging-Bench v0
+```
+
+`rig doctor` is the friendliest place to start: a single read-only command that surfaces every health check (Python ≥ 3.12, every dependency version, every rig package importable, every expected repo file present) and exits with the number of failures.
+
+---
+
 ## Repository layout
 
 ```
@@ -388,7 +428,7 @@ rigging/
 ├── docs/
 │   ├── architecture.md       # Package graph + per-call sequence + state machine
 │   ├── related-work.md       # MCP · A2A · ACP · OASF · LangGraph · CrewAI · …
-│   ├── EXAMPLES.md           # Annotated walkthrough of the five examples
+│   ├── EXAMPLES.md           # Annotated walkthrough of the six examples
 │   ├── case-studies.md       # Three real-world failure modes
 │   ├── glossary.md           # The vocabulary
 │   ├── FAQ.md                # The questions we get every week
@@ -402,9 +442,9 @@ rigging/
 │   ├── rigging-trace/        # OTel processor · blame-chain extractor
 │   ├── rigging-adapters/     # Local · LiteLLM · MCP
 │   └── rigging-runtime/      # The Rig orchestrator + CLI
-├── examples/                 # 01..05 runnable examples (offline, no API keys)
+├── examples/                 # 01..06 runnable examples (offline, no API keys)
 ├── benchmarks/rig_bench/     # Rigging-Bench v0
-└── tests/                    # 76 tests · unit · integration · property (hypothesis)
+└── tests/                    # 97 tests · unit · integration · property (hypothesis)
 ```
 
 The dependency graph between packages is one-direction. Adapters never import from runtime.
@@ -413,7 +453,7 @@ The dependency graph between packages is one-direction. Adapters never import fr
 
 ## Roadmap
 
-**v0 (this release):** the five primitives, the four specs, ten ADRs, five examples, the five-axis benchmark, the CLI, the live site, the cheatsheet.
+**v0 (this release):** three primitives (cards, contracts, blame), four specs, ten ADRs, **six** runnable examples, the five-axis benchmark, the `rig` CLI (incl. `doctor`, `card show`, `contract show`), the interactive live site, and the printable cheatsheet.
 
 **v1 (the immediate horizon):**
 
@@ -477,6 +517,33 @@ Not in v0. The TUI is sufficient, and the <a href="https://bettyguo.github.io/ri
 
 ---
 
+## Curator and citation
+
+This repository is curated by **Betty Guo** ([Dongxin Guo](https://bettyguo.github.io)), PhD candidate in Computer Science at [The University of Hong Kong](https://www.cs.hku.hk/), advised by [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu). Her research interests sit at the intersection of trust-bearing infrastructure for multi-agent systems, applied cryptography, and the systems substrate beneath modern AI agents. Rigging is the reference implementation of a concept she has been developing through her PhD.
+
+**Cite this work** (BibTeX):
+
+```bibtex
+@software{guo2026rigging,
+  author = {Guo, Dongxin},
+  title  = {Rigging: typed, trust-bearing coupling for harnessed agents},
+  year   = {2026},
+  url    = {https://github.com/bettyguo/rigging},
+  note   = {Reference implementation, v0}
+}
+```
+
+If you use Rigging in academic work, link the live site ([bettyguo.github.io/rigging](https://bettyguo.github.io/rigging/)) and the v0 reference benchmarks ([`benchmarks/results/v0-reference.md`](./benchmarks/results/v0-reference.md)) for reproducibility. The four normative specs under [`docs/spec/`](./docs/spec/) are the citable artefacts; the implementation in [`packages/`](./packages/) is the worked example.
+
+| Reach out | Link |
+|---|---|
+| Homepage | <https://bettyguo.github.io> |
+| GitHub | [@bettyguo](https://github.com/bettyguo) |
+| Affiliation | [HKU, Department of Computer Science](https://www.cs.hku.hk/) |
+| Advisor | [Prof. Siu-Ming Yiu](https://www.cs.hku.hk/people/academic-staff/smyiu) |
+
+---
+
 ## Contributing
 
 We welcome PRs. Especially welcome: adversarial scenarios for the benchmark, real-world harness adapters, and corrections to the spec.
@@ -489,8 +556,9 @@ We welcome PRs. Especially welcome: adversarial scenarios for the benchmark, rea
 ```bash
 # Hack on the runtime
 python -m pip install -e ".[dev]"
-pytest tests/ -q                # 76 tests, ~3 seconds
+pytest tests/ -q                # 97 tests, ~3 seconds
 ruff check . && mypy packages/  # lint + types
+rig doctor                      # quick local environment audit
 ```
 
 ---
@@ -553,6 +621,14 @@ If this project moves the conversation forward, please star the repo. It is the 
 <div align="center">
 
 <sub>Apache 2.0 · © The Rigging Authors · Built for skeptical practitioners and ICLR/NeurIPS reviewers alike.</sub>
+
+<br/>
+
+<sub>
+Curated by <strong><a href="https://bettyguo.github.io">Betty Guo</a></strong> (<a href="https://bettyguo.github.io">Dongxin Guo</a>) ·
+PhD candidate, <a href="https://www.cs.hku.hk/">HKU Department of Computer Science</a> ·
+advised by <a href="https://www.cs.hku.hk/people/academic-staff/smyiu">Prof. Siu-Ming Yiu</a>.
+</sub>
 
 <br/><br/>
 

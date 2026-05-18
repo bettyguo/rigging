@@ -6,6 +6,33 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.2.0] — Unreleased — post-v0 audit cycle
 
+### Added (this iteration)
+- **`rig doctor`** — read-only environment audit. Checks Python ≥ 3.12,
+  every required dependency, every rig package importable, and every
+  expected repo file. Exits with the number of failed checks.
+- **`rig card show <file>`** — pretty-print an agent card with its
+  capabilities; verifies the JWS by default.
+- **`rig contract show <file>`** — pretty-print a delegation contract,
+  including parent linkage and signature status.
+- **`rig examples`** — list every built-in example.
+- **`rig version`** — print the installed `rigging` package version.
+- **Example 06 — recursive verification.** A verifier's signed verdict
+  envelope is itself audited by a meta-verifier. Exercises
+  `verification_recursion_cap` (ADR-0007).
+- **`rigging.diagnostics`** module — the pure-Python core of `rig doctor`,
+  re-usable from tests and CI scripts.
+- **Interactive cost simulator** on the live site (`#simulator`) —
+  drag three sliders, watch where the budget overrun lands and why
+  A's ledger is structurally inviolable.
+- **Curator section** on the live site, in the README, and in the
+  cheatsheet — attribution and citation guidance.
+- **Test count: 76 → 97.** New suites:
+  `tests/unit/test_diagnostics.py` (6 tests),
+  `tests/integration/test_cli_extensions.py` (7 tests for the new
+  CLI surface, exercised through `typer.testing.CliRunner`),
+  `tests/integration/test_example_06.py` (8 tests for the recursion-cap
+  invariants and the example's end-to-end run).
+
 ### Fixed
 - **A1 — Verifier output signatures are now verified.** `Rig._run_verifier`
   re-derives the verifier's public key from its registered card and

@@ -12,6 +12,7 @@ rig run 02-three-vendor-rig
 rig run 03-adversarial-subagent
 rig run 04-cost-attribution
 rig run 05-vote-ensemble
+rig run 06-recursive-verification
 
 # or the long form
 python -m examples.01_two_agent_handoff.run
@@ -180,6 +181,37 @@ composition. The runtime has zero special-case code for it. See
 
 ---
 
+## 06 · Recursive verification — verifying the verifier
+
+**Path:** [`examples/06_recursive_verification/`](../examples/06_recursive_verification/)
+
+A planner asks a worker for a `classify` result. A primary verifier
+audits the worker's output. A *meta-verifier* then audits the primary's
+*verdict envelope* itself — a useful pattern when audit transcripts are
+part of the regulatory artefact.
+
+```mermaid
+graph TD
+    P[Planner] -- contract --> W[Worker · classify]
+    W -- output --> V1[Primary verifier<br/>audits classifier output]
+    V1 -- verdict envelope --> V2[Meta-verifier<br/>audits the verdict]
+    V2 -- meta-verdict --> P
+```
+
+The runtime enforces a bound on this kind of chain via
+`RigConfig.verification_recursion_cap`. The example sets the cap to 3
+and exercises two consecutive verification levels; pushing past the cap
+raises `RecursionCapExceeded` and emits the corresponding
+`rig.contract.void` span — exactly the same shape as any other
+structural refusal.
+
+**The invariant exercised:** verification is *compositional* (a verifier
+is just an agent) but the runtime caps recursion so that audit chains
+always terminate in a reachable verdict. See
+[ADR-0007](./adr/0007-verifier-as-agent.md).
+
+---
+
 ## Reading the traces
 
 All examples write `./trace.json`. The CLI renders them:
@@ -198,7 +230,7 @@ documented in [`docs/spec/trace-v0.md`](./spec/trace-v0.md).
 
 ## What to build next
 
-Once you have read all five, the most natural next step is to write
+Once you have read all six, the most natural next step is to write
 your own adapter. The reference adapters
 ([`packages/rigging-adapters/`](../packages/rigging-adapters/)) are
 all under 200 LOC; the `Agent` protocol in

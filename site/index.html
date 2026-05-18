@@ -29,10 +29,12 @@
       <a href="#negotiation">Negotiation</a>
       <a href="#cost">Cost</a>
       <a href="#examples">Examples</a>
+      <a href="#simulator">Simulator</a>
       <a href="#bench">Bench</a>
       <a href="#compare">vs.</a>
       <a href="#timeline">Why now?</a>
       <a href="#faq">FAQ</a>
+      <a href="#curator">Curator</a>
       <a href="./cheatsheet.html">Cheatsheet</a>
       <a class="cta" href="https://github.com/bettyguo/rigging" target="_blank" rel="noopener">GitHub →</a>
     </nav>
@@ -63,9 +65,10 @@
       </div>
       <ul class="hero-stats">
         <li><strong>5</strong>packages</li>
-        <li><strong>76</strong>tests</li>
+        <li><strong>97</strong>tests</li>
         <li><strong>10</strong>ADRs</li>
         <li><strong>4</strong>specs</li>
+        <li><strong>6</strong>examples</li>
         <li><strong>0</strong>LLM code in core</li>
       </ul>
     </div>
@@ -367,6 +370,70 @@ return out</code></pre>
         <h3>Vote ensemble verifier</h3>
         <p>Three verifiers, majority rules. Disagreement becomes a composition problem, not a runtime problem.</p>
       </a>
+      <a class="card extra" href="https://github.com/bettyguo/rigging/tree/main/examples/06_recursive_verification">
+        <span class="card-num">06</span>
+        <h3>Recursive verification</h3>
+        <p>A verifier's verdict is itself audited by a meta-verifier. Recursion is bounded by <code>verification_recursion_cap</code>.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COST SIMULATOR ===================== -->
+<section id="simulator" class="band">
+  <div class="container">
+    <p class="eyebrow">Interactive · drag the sliders</p>
+    <h2>What does a runaway subcontractor cost?</h2>
+    <p class="muted">
+      A → B → C. Each contract has its own carved sub-budget. C overspends.
+      Move the sliders; watch where the overrun lands. <strong>A's budget
+      is structurally inviolable</strong> — that is the entire point.
+    </p>
+
+    <div class="simulator">
+      <div class="sim-controls">
+        <label>
+          <span>A → B budget</span>
+          <input type="range" id="sim-a-budget" min="0.10" max="5.00" step="0.05" value="1.00" />
+          <output id="sim-a-budget-out">$1.00</output>
+        </label>
+        <label>
+          <span>B → C sub-budget</span>
+          <input type="range" id="sim-b-budget" min="0.05" max="2.00" step="0.05" value="0.20" />
+          <output id="sim-b-budget-out">$0.20</output>
+        </label>
+        <label>
+          <span>C's actual spend</span>
+          <input type="range" id="sim-c-spend" min="0.01" max="3.00" step="0.05" value="0.33" />
+          <output id="sim-c-spend-out">$0.33</output>
+        </label>
+        <p class="muted small">
+          The runtime debits against the contract that holds the spend.
+          A's ledger never sees C's overrun. Try setting C beyond B's
+          sub-budget to trigger <code>BudgetOverrun</code>.
+        </p>
+      </div>
+
+      <div class="sim-out">
+        <div class="sim-ledger">
+          <header><strong>A's ledger</strong> <span class="muted small">(parent, top-level caller)</span></header>
+          <div class="bar sim-bar"><span id="sim-bar-a" style="--p:20%"></span></div>
+          <p class="small sim-row"><span>budget</span><strong id="sim-a-max">$1.00</strong></p>
+          <p class="small sim-row"><span>committed to B</span><strong id="sim-a-debit">$0.20</strong></p>
+          <p class="small sim-row"><span>remaining</span><strong id="sim-a-remaining" class="good">$0.80</strong></p>
+        </div>
+        <div class="sim-ledger">
+          <header><strong>B's ledger</strong> <span class="muted small">(sub-budget carved from A)</span></header>
+          <div class="bar sim-bar"><span id="sim-bar-b" style="--p:100%"></span></div>
+          <p class="small sim-row"><span>sub-budget</span><strong id="sim-b-max">$0.20</strong></p>
+          <p class="small sim-row"><span>spent on C</span><strong id="sim-b-debit">$0.33</strong></p>
+          <p class="small sim-row"><span>status</span><strong id="sim-b-status" class="bad">overrun</strong></p>
+        </div>
+        <div class="sim-verdict" id="sim-verdict">
+          <strong class="bad">BudgetOverrun</strong> raised against the B→C contract.
+          <br/><span class="muted small">A is unaffected. The blame chain points at C.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -607,6 +674,52 @@ trace.write(<span class="str">"trace.json"</span>)</code></pre>
   </div>
 </section>
 
+<!-- ===================== CURATOR ===================== -->
+<section id="curator" class="band band-dark">
+  <div class="container">
+    <p class="eyebrow">Curator</p>
+    <h2>Maintained by Betty Guo</h2>
+    <div class="curator">
+      <div class="curator-card">
+        <h3>Dongxin (Betty) Guo</h3>
+        <p class="muted small">
+          PhD candidate, Department of Computer Science,
+          <a href="https://www.cs.hku.hk/" target="_blank" rel="noopener">The University of Hong Kong</a>.
+          Advised by
+          <a href="https://www.cs.hku.hk/people/academic-staff/smyiu" target="_blank" rel="noopener">Prof. Siu-Ming Yiu</a>.
+        </p>
+        <p>
+          Research interests: trust-bearing infrastructure for multi-agent
+          systems, applied cryptography, and the systems substrate beneath
+          modern AI agents. <em>Rigging</em> is the reference implementation
+          of a concept she has been developing through her PhD.
+        </p>
+        <p class="curator-links">
+          <a class="btn btn-ghost" href="https://bettyguo.github.io" target="_blank" rel="noopener">Homepage ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/bettyguo" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="https://www.cs.hku.hk/" target="_blank" rel="noopener">HKU CS ↗</a>
+        </p>
+      </div>
+      <aside class="curator-aside">
+        <h4>Cite this work</h4>
+<pre class="code-block"><code><span class="cmt"># BibTeX</span>
+@software{guo2026rigging,
+  author = {Guo, Dongxin},
+  title  = {Rigging: typed, trust-bearing coupling
+            for harnessed agents},
+  year   = {2026},
+  url    = {https://github.com/bettyguo/rigging},
+  note   = {Reference implementation, v0}
+}</code></pre>
+        <p class="muted small">
+          Or just star the repo &mdash; that is the single
+          highest-signal vote.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CTA ===================== -->
 <section id="cta" class="band band-cta">
   <div class="container">
@@ -624,9 +737,29 @@ trace.write(<span class="str">"trace.json"</span>)</code></pre>
 </main>
 
 <footer class="foot">
+  <div class="container foot-grid">
+    <div>
+      <span>Apache 2.0 · © The Rigging Authors</span>
+      <br/>
+      <span class="muted small">
+        Curated by
+        <a href="https://bettyguo.github.io" target="_blank" rel="noopener"><strong>Betty Guo</strong></a>
+        · PhD candidate,
+        <a href="https://www.cs.hku.hk/" target="_blank" rel="noopener">HKU CS</a>
+        · advised by
+        <a href="https://www.cs.hku.hk/people/academic-staff/smyiu" target="_blank" rel="noopener">Prof. Siu-Ming Yiu</a>.
+      </span>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/bettyguo/rigging">GitHub</a>
+      <a href="./cheatsheet.html">Cheatsheet</a>
+      <a href="https://github.com/bettyguo/rigging/blob/main/CONCEPT.md">CONCEPT</a>
+      <a href="https://github.com/bettyguo/rigging/tree/main/docs/spec">Spec</a>
+      <a href="https://github.com/bettyguo/rigging/blob/main/benchmarks/results/v0-reference.md">Benchmarks</a>
+    </div>
+  </div>
   <div class="container">
-    <span>Apache 2.0 · © The Rigging Authors</span>
-    <span class="muted small">"You can have a great harness on every agent and still have terrible rigging."</span>
+    <p class="muted small foot-quote">"You can have a great harness on every agent and still have terrible rigging."</p>
   </div>
 </footer>
 

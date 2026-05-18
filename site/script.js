@@ -232,6 +232,77 @@
   if (negArrows.length) setNegStep(0);
 
   // ============================================================
+  // cost simulator
+  // ============================================================
+  const simA = document.getElementById('sim-a-budget');
+  const simB = document.getElementById('sim-b-budget');
+  const simC = document.getElementById('sim-c-spend');
+  const simOut = {
+    a:   document.getElementById('sim-a-budget-out'),
+    b:   document.getElementById('sim-b-budget-out'),
+    c:   document.getElementById('sim-c-spend-out'),
+    barA: document.getElementById('sim-bar-a'),
+    barB: document.getElementById('sim-bar-b'),
+    aMax: document.getElementById('sim-a-max'),
+    aDebit: document.getElementById('sim-a-debit'),
+    aRem: document.getElementById('sim-a-remaining'),
+    bMax: document.getElementById('sim-b-max'),
+    bDebit: document.getElementById('sim-b-debit'),
+    bStatus: document.getElementById('sim-b-status'),
+    verdict: document.getElementById('sim-verdict'),
+  };
+  function fmt(v) { return '$' + Number(v).toFixed(2); }
+  function pct(num, denom) {
+    if (denom <= 0) return 0;
+    return Math.max(0, Math.min(100, (num / denom) * 100));
+  }
+
+  function renderSim() {
+    if (!simA || !simB || !simC) return;
+    const a = Number(simA.value);
+    let b = Number(simB.value);
+    const c = Number(simC.value);
+    if (b > a) { b = a; simB.value = String(b); }
+
+    simOut.a.textContent = fmt(a);
+    simOut.b.textContent = fmt(b);
+    simOut.c.textContent = fmt(c);
+
+    // A's ledger: committed to B is b; remaining is a - b.
+    simOut.aMax.textContent   = fmt(a);
+    simOut.aDebit.textContent = fmt(b);
+    simOut.aRem.textContent   = fmt(a - b);
+    simOut.aRem.className = (a - b) >= 0 ? 'good' : 'bad';
+    simOut.barA.style.setProperty('--p', pct(b, a) + '%');
+    simOut.barA.parentElement.classList.remove('full');
+
+    // B's ledger: sub-budget=b, spent on C=c, overrun if c>b.
+    simOut.bMax.textContent   = fmt(b);
+    simOut.bDebit.textContent = fmt(c);
+    const overrun = c > b;
+    simOut.bStatus.textContent = overrun ? 'overrun' : 'ok';
+    simOut.bStatus.className   = overrun ? 'bad' : 'good';
+    simOut.barB.style.setProperty('--p', pct(c, b) + '%');
+    simOut.barB.parentElement.classList.toggle('full', overrun);
+
+    if (overrun) {
+      simOut.verdict.className = '';
+      simOut.verdict.innerHTML =
+        '<strong class="bad">BudgetOverrun</strong> raised against the B→C contract' +
+        ' (' + fmt(c) + ' > ' + fmt(b) + ').' +
+        '<br/><span class="muted small">A is unaffected. The blame chain points at C.</span>';
+    } else {
+      simOut.verdict.className = 'ok';
+      simOut.verdict.innerHTML =
+        '<strong class="good">within budget.</strong> C spent ' + fmt(c) +
+        ' of B\'s ' + fmt(b) + ' sub-budget.' +
+        '<br/><span class="muted small">A\'s ledger remains at ' + fmt(a - b) + ' uncommitted.</span>';
+    }
+  }
+  [simA, simB, simC].forEach((el) => { if (el) el.addEventListener('input', renderSim); });
+  renderSim();
+
+  // ============================================================
   // intersection-observer fade-in for bands
   // ============================================================
   if ('IntersectionObserver' in window) {
