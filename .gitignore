@@ -42,3 +42,4 @@ Thumbs.db
 *.rig-trace
 benchmarks/results/*.json
 !benchmarks/results/.gitkeep
+.preview/

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="The three primitives a rig refuses to live without">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="The three primitives a rig refuses to live without">
   <defs>
     <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0%" stop-color="#1e293b"/>
@@ -8,81 +8,111 @@
       <stop offset="0%" stop-color="#38bdf8"/>
       <stop offset="100%" stop-color="#22d3ee"/>
     </linearGradient>
+    <linearGradient id="accent2" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="accent3" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
     <style>
-      .h { fill:#f8fafc; font: 600 22px ui-sans-serif, system-ui, sans-serif; }
-      .p { fill:#94a3b8; font: 14px ui-sans-serif, system-ui, sans-serif; }
-      .k { fill:#fbbf24; font: 700 12px ui-monospace, monospace; }
+      .h   { fill:#f8fafc; font: 700 24px ui-sans-serif, system-ui, sans-serif; }
+      .p   { fill:#94a3b8; font: 14px/1.5 ui-sans-serif, system-ui, sans-serif; }
+      .k   { fill:#fbbf24; font: 700 12px ui-monospace, monospace; letter-spacing:1px; }
       .pill { fill:#0f172a; stroke:#334155; }
-      .pillT { fill:#e2e8f0; font: 600 11px ui-monospace, monospace; }
+      .pillT{ fill:#e2e8f0; font: 600 11px ui-monospace, monospace; }
     </style>
+    <symbol id="okSm" viewBox="0 0 16 16" width="14" height="14">
+      <circle cx="8" cy="8" r="7" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+      <path d="M5 8 L7.5 10.5 L11.5 6" stroke="#a7f3d0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="badSm" viewBox="0 0 16 16" width="14" height="14">
+      <circle cx="8" cy="8" r="7" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.5"/>
+      <path d="M5.5 5.5 L10.5 10.5 M10.5 5.5 L5.5 10.5" stroke="#fecaca" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </symbol>
   </defs>
 
-  <rect width="1200" height="360" fill="#020617"/>
+  <rect width="1280" height="400" fill="#020617"/>
 
-  <!-- Card 1: Signed agent cards -->
+  <!-- Card 1: Signed agent cards (400 wide × 320 tall, 32 padding) -->
   <g transform="translate(40,40)">
-    <rect width="360" height="280" rx="16" fill="url(#card)" stroke="#1e3a8a"/>
-    <rect width="360" height="6" rx="3" fill="url(#accent)"/>
-    <text x="28" y="60" class="k">01 / capability</text>
-    <text x="28" y="92" class="h">Signed Agent Cards</text>
-    <text x="28" y="124" class="p">Each agent advertises capabilities,</text>
-    <text x="28" y="142" class="p">input/output schemas, and cost model</text>
-    <text x="28" y="160" class="p">on an Ed25519-signed JSON card.</text>
-    <text x="28" y="178" class="p">Unsigned card → call refused.</text>
+    <rect width="380" height="320" rx="18" fill="url(#card)" stroke="#1e3a8a"/>
+    <rect width="380" height="6"   rx="3"  fill="url(#accent)"/>
+    <text x="32" y="60"  class="k">01 / capability</text>
+    <text x="32" y="98"  class="h">Signed Agent Cards</text>
+    <text x="32"        class="p">
+      <tspan x="32" dy="138">Each agent advertises capabilities,</tspan>
+      <tspan x="32" dy="20">input/output schemas, and a cost</tspan>
+      <tspan x="32" dy="20">model on an Ed25519-signed JSON</tspan>
+      <tspan x="32" dy="20">card. Unsigned card &#8594; call refused.</tspan>
+    </text>
 
-    <g transform="translate(28,200)">
-      <rect class="pill" x="0" y="0" width="118" height="22" rx="11"/>
-      <text x="14" y="15" class="pillT">capability: verify</text>
-      <rect class="pill" x="126" y="0" width="74" height="22" rx="11"/>
-      <text x="140" y="15" class="pillT">cost: usd</text>
-      <rect class="pill" x="0" y="32" width="146" height="22" rx="11"/>
-      <text x="14" y="47" class="pillT">sig: ed25519:8f3…ac</text>
+    <g transform="translate(32,236)">
+      <rect class="pill" x="0"   y="0"  width="160" height="24" rx="12"/>
+      <text x="16" y="16" class="pillT">capability: verify</text>
+      <rect class="pill" x="170" y="0"  width="120" height="24" rx="12"/>
+      <text x="186" y="16" class="pillT">cost: usd</text>
+      <rect class="pill" x="0"   y="36" width="232" height="24" rx="12"/>
+      <text x="16" y="52" class="pillT">sig: ed25519:8f3&#8230;ac</text>
     </g>
   </g>
 
   <!-- Card 2: Delegation contracts -->
-  <g transform="translate(420,40)">
-    <rect width="360" height="280" rx="16" fill="url(#card)" stroke="#1e3a8a"/>
-    <rect width="360" height="6" rx="3" fill="url(#accent)"/>
-    <text x="28" y="60" class="k">02 / coupling</text>
-    <text x="28" y="92" class="h">Delegation Contracts</text>
-    <text x="28" y="124" class="p">A typed, signed bill of lading</text>
-    <text x="28" y="142" class="p">between caller and callee:</text>
-    <text x="28" y="160" class="p">capability + budget + verifier +</text>
-    <text x="28" y="178" class="p">expiry. Negotiated. Persisted.</text>
+  <g transform="translate(450,40)">
+    <rect width="380" height="320" rx="18" fill="url(#card)" stroke="#3b0764"/>
+    <rect width="380" height="6"   rx="3"  fill="url(#accent2)"/>
+    <text x="32" y="60"  class="k">02 / coupling</text>
+    <text x="32" y="98"  class="h">Delegation Contracts</text>
+    <text x="32"        class="p">
+      <tspan x="32" dy="138">A typed, signed bill of lading</tspan>
+      <tspan x="32" dy="20">between caller and callee:</tspan>
+      <tspan x="32" dy="20">capability + budget + verifier +</tspan>
+      <tspan x="32" dy="20">expiry. Negotiated. Persisted.</tspan>
+    </text>
 
-    <g transform="translate(28,200)">
-      <rect class="pill" x="0" y="0" width="110" height="22" rx="11"/>
-      <text x="14" y="15" class="pillT">budget: $0.50</text>
-      <rect class="pill" x="118" y="0" width="100" height="22" rx="11"/>
-      <text x="132" y="15" class="pillT">verifier: V</text>
-      <rect class="pill" x="0" y="32" width="146" height="22" rx="11"/>
-      <text x="14" y="47" class="pillT">expires: T+30s</text>
+    <g transform="translate(32,236)">
+      <rect class="pill" x="0"   y="0"  width="138" height="24" rx="12"/>
+      <text x="16" y="16" class="pillT">budget: $0.50</text>
+      <rect class="pill" x="148" y="0"  width="124" height="24" rx="12"/>
+      <text x="164" y="16" class="pillT">verifier: V</text>
+      <rect class="pill" x="0"   y="36" width="190" height="24" rx="12"/>
+      <text x="16" y="52" class="pillT">expires: T + 30s</text>
     </g>
   </g>
 
   <!-- Card 3: Blame chains -->
-  <g transform="translate(800,40)">
-    <rect width="360" height="280" rx="16" fill="url(#card)" stroke="#1e3a8a"/>
-    <rect width="360" height="6" rx="3" fill="url(#accent)"/>
-    <text x="28" y="60" class="k">03 / accountability</text>
-    <text x="28" y="92" class="h">Blame Chains</text>
-    <text x="28" y="124" class="p">When something goes wrong,</text>
-    <text x="28" y="142" class="p">walk the DAG of signed envelopes</text>
-    <text x="28" y="160" class="p">backwards. The proximate cause</text>
-    <text x="28" y="178" class="p">is signed by exactly one key.</text>
+  <g transform="translate(860,40)">
+    <rect width="380" height="320" rx="18" fill="url(#card)" stroke="#7c2d12"/>
+    <rect width="380" height="6"   rx="3"  fill="url(#accent3)"/>
+    <text x="32" y="60"  class="k">03 / accountability</text>
+    <text x="32" y="98"  class="h">Blame Chains</text>
+    <text x="32"        class="p">
+      <tspan x="32" dy="138">When something goes wrong, walk</tspan>
+      <tspan x="32" dy="20">the DAG of signed envelopes back-</tspan>
+      <tspan x="32" dy="20">wards. The proximate cause is</tspan>
+      <tspan x="32" dy="20">signed by exactly one key.</tspan>
+    </text>
 
-    <g transform="translate(28,200)" font-family="ui-monospace, monospace" font-size="11">
-      <rect x="0" y="0" width="44" height="22" rx="11" fill="#064e3b" stroke="#10b981"/>
-      <text x="13" y="15" fill="#a7f3d0">A ✓</text>
-      <text x="48" y="15" fill="#475569">→</text>
-      <rect x="58" y="0" width="44" height="22" rx="11" fill="#064e3b" stroke="#10b981"/>
-      <text x="71" y="15" fill="#a7f3d0">B ✓</text>
-      <text x="106" y="15" fill="#475569">→</text>
-      <rect x="116" y="0" width="44" height="22" rx="11" fill="#7f1d1d" stroke="#ef4444"/>
-      <text x="128" y="15" fill="#fecaca">C ✗</text>
+    <g transform="translate(32,232)" font-family="ui-monospace, monospace" font-size="13" font-weight="700">
+      <!-- A: ok pill -->
+      <rect x="0"  y="0" width="58" height="28" rx="14" fill="#064e3b" stroke="#10b981"/>
+      <text x="14" y="19" fill="#a7f3d0">A</text>
+      <use href="#okSm" x="30" y="7"/>
+      <!-- arrow 1 -->
+      <line x1="64" y1="14" x2="78" y2="14" stroke="#64748b" stroke-width="1.5"/>
+      <!-- B: ok pill -->
+      <rect x="82" y="0" width="58" height="28" rx="14" fill="#064e3b" stroke="#10b981"/>
+      <text x="96" y="19" fill="#a7f3d0">B</text>
+      <use href="#okSm" x="112" y="7"/>
+      <!-- arrow 2 -->
+      <line x1="146" y1="14" x2="160" y2="14" stroke="#64748b" stroke-width="1.5"/>
+      <!-- C: bad pill -->
+      <rect x="164" y="0" width="58" height="28" rx="14" fill="#7f1d1d" stroke="#ef4444"/>
+      <text x="178" y="19" fill="#fecaca">C</text>
+      <use href="#badSm" x="194" y="7"/>
 
-      <text x="0" y="48" fill="#94a3b8">proximate cause: agent C</text>
+      <text x="0" y="60" fill="#94a3b8" font-weight="400">proximate cause: agent C</text>
     </g>
   </g>
 </svg>

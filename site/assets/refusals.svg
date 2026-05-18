@@ -1,60 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="The six refusals — what a rig will not do">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="1280" height="420" role="img" aria-label="The six refusals — what a rig will not do">
   <defs>
     <linearGradient id="card2" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0%" stop-color="#1e293b"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
     <style>
-      .h   { fill:#f1f5f9; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+      .h   { fill:#f1f5f9; font: 700 24px ui-sans-serif, system-ui, sans-serif; }
       .sub { fill:#94a3b8; font: 13px ui-monospace, monospace; }
-      .no  { fill:#ef4444; font: 700 14px ui-monospace, monospace; }
-      .txt { fill:#e2e8f0; font: 14px ui-sans-serif, system-ui, sans-serif; }
+      .no  { fill:#ef4444; font: 700 13px ui-monospace, monospace; letter-spacing:1.2px; }
+      .num { fill:#fbbf24; font: 700 11px ui-monospace, monospace; }
+      .txt { fill:#e2e8f0; font: 14px/1.45 ui-sans-serif, system-ui, sans-serif; }
     </style>
   </defs>
 
-  <rect width="1200" height="360" fill="#020617"/>
-  <text x="40" y="42" class="h">The six refusals</text>
-  <text x="40" y="64" class="sub">The art of this layer is in what it refuses, not in what it provides.</text>
+  <rect width="1280" height="420" fill="#020617"/>
+  <text x="40" y="44" class="h">The six refusals</text>
+  <text x="40" y="68" class="sub">The art of this layer is in what it refuses, not in what it provides.</text>
 
-  <g transform="translate(40,90)">
+  <!-- Top row: four narrow refusals, 290 wide each, 26 padding -->
+  <g transform="translate(40,100)">
+    <rect width="290" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
+    <text x="26" y="32" class="num">01</text>
+    <text x="60" y="32" class="no">REFUSES</text>
+    <text x="26" y="68" class="txt">to route against</text>
+    <text x="26" y="88" class="txt">unsigned cards.</text>
+  </g>
+
+  <g transform="translate(350,100)">
+    <rect width="290" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
+    <text x="26" y="32" class="num">02</text>
+    <text x="60" y="32" class="no">REFUSES</text>
+    <text x="26" y="68" class="txt">to issue contracts whose</text>
+    <text x="26" y="88" class="txt">capabilities are undeclared.</text>
+  </g>
+
+  <g transform="translate(660,100)">
+    <rect width="290" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
+    <text x="26" y="32" class="num">03</text>
+    <text x="60" y="32" class="no">REFUSES</text>
+    <text x="26" y="68" class="txt">to retry silently.</text>
+    <text x="26" y="88" class="txt">Retries are first-class.</text>
+  </g>
+
+  <g transform="translate(970,100)">
     <rect width="270" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
-    <text x="20" y="38" class="no">REFUSES</text>
-    <text x="20" y="68" class="txt">to route against</text>
-    <text x="20" y="88" class="txt">unsigned cards.</text>
+    <text x="26" y="32" class="num">04</text>
+    <text x="60" y="32" class="no">REFUSES</text>
+    <text x="26" y="68" class="txt">to attribute cost to anyone</text>
+    <text x="26" y="88" class="txt">but the contract holder.</text>
   </g>
 
-  <g transform="translate(330,90)">
-    <rect width="270" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
-    <text x="20" y="38" class="no">REFUSES</text>
-    <text x="20" y="68" class="txt">to issue contracts whose</text>
-    <text x="20" y="88" class="txt">capabilities are undeclared.</text>
+  <!-- Bottom row: two wide refusals, 600 wide -->
+  <g transform="translate(40,240)">
+    <rect width="600" height="140" rx="14" fill="url(#card2)" stroke="#1e293b"/>
+    <text x="26" y="32" class="num">05</text>
+    <text x="60" y="32" class="no">REFUSES</text>
+    <text x="26" y="68" class="txt">to admit unverified output as verified.</text>
+    <text x="26" y="92" class="txt" font-size="13" fill="#94a3b8">No exception. No "good enough."</text>
+    <text x="26" y="112" class="txt" font-size="13" fill="#94a3b8">A verdict is signed or it did not happen.</text>
   </g>
 
-  <g transform="translate(620,90)">
-    <rect width="270" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
-    <text x="20" y="38" class="no">REFUSES</text>
-    <text x="20" y="68" class="txt">to retry silently.</text>
-    <text x="20" y="88" class="txt">Retries are first-class events.</text>
-  </g>
-
-  <g transform="translate(910,90)">
-    <rect width="270" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
-    <text x="20" y="38" class="no">REFUSES</text>
-    <text x="20" y="68" class="txt">to attribute cost to anyone</text>
-    <text x="20" y="88" class="txt">other than the contract holder.</text>
-  </g>
-
-  <g transform="translate(40,220)">
-    <rect width="560" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
-    <text x="20" y="38" class="no">REFUSES</text>
-    <text x="20" y="68" class="txt">to admit unverified output as verified.</text>
-    <text x="20" y="88" class="txt">No exception. No "good enough." Verdict is signed or it didn't happen.</text>
-  </g>
-
-  <g transform="translate(620,220)">
-    <rect width="560" height="120" rx="14" fill="url(#card2)" stroke="#1e293b"/>
-    <text x="20" y="38" class="no">REFUSES</text>
-    <text x="20" y="68" class="txt">to be a marketplace, a scheduler, a router, or a harness.</text>
-    <text x="20" y="88" class="txt">Each of those is a real layer. None of them is rigging.</text>
+  <g transform="translate(660,240)">
+    <rect width="580" height="140" rx="14" fill="url(#card2)" stroke="#1e293b"/>
+    <text x="26" y="32" class="num">06</text>
+    <text x="60" y="32" class="no">REFUSES</text>
+    <text x="26" y="68" class="txt">to be a marketplace, scheduler, router, or harness.</text>
+    <text x="26" y="92" class="txt" font-size="13" fill="#94a3b8">Each of those is a real layer. A real product.</text>
+    <text x="26" y="112" class="txt" font-size="13" fill="#94a3b8">None of them is rigging.</text>
   </g>
 </svg>

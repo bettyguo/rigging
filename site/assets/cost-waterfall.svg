@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 460" width="1100" height="460" role="img" aria-label="Cost attribution waterfall — A → B → C with explicit sub-budgets">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="Cost attribution waterfall — A → B → C with explicit sub-budgets">
   <defs>
     <linearGradient id="barA" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0%" stop-color="#0ea5e9"/>
@@ -17,85 +17,97 @@
       <stop offset="100%" stop-color="#7f1d1d"/>
     </linearGradient>
     <style>
-      .h    { fill:#f1f5f9; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+      .h    { fill:#f1f5f9; font: 700 24px ui-sans-serif, system-ui, sans-serif; }
       .sub  { fill:#94a3b8; font: 13px ui-monospace, monospace; }
       .axis { stroke:#334155; stroke-width:1; }
       .axl  { fill:#64748b; font: 11px ui-monospace, monospace; }
-      .lbl  { fill:#f8fafc; font: 700 14px ui-monospace, monospace; }
-      .pill { fill:#0f172a; stroke:#334155; rx:6; ry:6; }
+      .lbl  { fill:#f8fafc; font: 700 16px ui-sans-serif, system-ui, sans-serif; }
+      .lblSub{fill:#94a3b8; font: 12px ui-monospace, monospace; }
       .pillT{ fill:#e2e8f0; font: 600 11px ui-monospace, monospace; }
+      .pillG{ fill:#a7f3d0; font: 700 11px ui-monospace, monospace; }
+      .pillR{ fill:#fecaca; font: 700 11px ui-monospace, monospace; }
     </style>
-  </defs>
-
-  <rect width="1100" height="460" fill="#020617"/>
-  <text x="40" y="42" class="h">Cost attribution · A → B → C · sub-budgets compose</text>
-  <text x="40" y="64" class="sub">B carves C's sub-budget from its own allocation. C overruns. <tspan fill="#fde68a">A's ledger is untouched.</tspan></text>
-
-  <!-- y axis grid -->
-  <g class="axis">
-    <line x1="120" y1="120" x2="120" y2="380"/>
-    <line x1="120" y1="380" x2="1060" y2="380"/>
-  </g>
-  <g class="axl">
-    <text x="60" y="385">$0.00</text>
-    <text x="60" y="320">$0.25</text>
-    <text x="60" y="255">$0.50</text>
-    <text x="60" y="190">$0.75</text>
-    <text x="60" y="125">$1.00</text>
-  </g>
-  <g stroke="#1e293b" stroke-dasharray="4 4">
-    <line x1="120" y1="320" x2="1060" y2="320"/>
-    <line x1="120" y1="255" x2="1060" y2="255"/>
-    <line x1="120" y1="190" x2="1060" y2="190"/>
-    <line x1="120" y1="125" x2="1060" y2="125"/>
-  </g>
-
-  <!-- A column: budget=1.00 -->
-  <g transform="translate(180,0)">
-    <rect x="0" y="125" width="160" height="255" fill="url(#barA)" rx="8"/>
-    <rect x="0" y="125" width="160" height="6" fill="#bae6fd"/>
-    <text x="80" y="100" text-anchor="middle" class="lbl">A · budget $1.00</text>
-    <text x="80" y="400" text-anchor="middle" class="sub">used $0.05  ·  remaining $0.95</text>
-    <rect class="pill" x="20" y="408" width="120" height="22"/>
-    <text x="40" y="423" class="pillT">unaffected ✓</text>
-  </g>
-
-  <!-- B column: sub-budget=0.50 from A -->
-  <g transform="translate(440,0)">
-    <rect x="0" y="255" width="160" height="125" fill="url(#barB)" rx="8"/>
-    <rect x="0" y="255" width="160" height="6" fill="#a5f3fc"/>
-    <text x="80" y="100" text-anchor="middle" class="lbl">B · sub-budget $0.50</text>
-    <text x="80" y="240" text-anchor="middle" class="sub">carved from A</text>
-    <text x="80" y="400" text-anchor="middle" class="sub">used $0.13  ·  remaining $0.37</text>
-    <rect class="pill" x="20" y="408" width="120" height="22"/>
-    <text x="40" y="423" class="pillT">on budget ✓</text>
-  </g>
-
-  <!-- C column: sub-budget=0.20 from B; overruns -->
-  <g transform="translate(700,0)">
-    <rect x="0" y="328" width="160" height="52" fill="url(#barC)" rx="8"/>
-    <rect x="0" y="328" width="160" height="6" fill="#fde68a"/>
-    <!-- overrun delta -->
-    <rect x="0" y="294" width="160" height="34" fill="url(#overrun)" rx="6">
-      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.2s" repeatCount="indefinite"/>
-    </rect>
-    <text x="80" y="100" text-anchor="middle" class="lbl">C · sub-budget $0.20</text>
-    <text x="80" y="240" text-anchor="middle" class="sub">carved from B</text>
-    <text x="80" y="400" text-anchor="middle" class="sub">used $0.33  ·  <tspan fill="#fecaca">+$0.13 overrun</tspan></text>
-    <rect class="pill" x="10" y="408" width="140" height="22" fill="#450a0a" stroke="#ef4444"/>
-    <text x="22" y="423" fill="#fecaca" font-family="ui-monospace, monospace" font-weight="700" font-size="11">BudgetOverrun</text>
-  </g>
-
-  <!-- Arrows: A→B→C -->
-  <g stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowC)">
-    <path d="M345 250 C 400 250, 400 290, 440 290"/>
-    <path d="M605 320 C 660 320, 660 350, 700 350"/>
-  </g>
-  <defs>
-    <marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <symbol id="okSm" viewBox="0 0 16 16" width="14" height="14">
+      <circle cx="8" cy="8" r="7" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+      <path d="M5 8 L7.5 10.5 L11.5 6" stroke="#a7f3d0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
       <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/>
     </marker>
   </defs>
-  <text x="368" y="240" class="sub">A→B</text>
-  <text x="628" y="310" class="sub">B→C</text>
+
+  <rect width="1200" height="520" fill="#020617"/>
+  <text x="40" y="44" class="h">Cost attribution &#183; A &#8594; B &#8594; C &#183; sub-budgets compose</text>
+  <text x="40" y="68" class="sub">
+    <tspan x="40" dy="0">B carves C's sub-budget from its own allocation. C overruns.</tspan>
+    <tspan x="40" dy="1.4em" fill="#fde68a">A's ledger is untouched.</tspan>
+  </text>
+
+  <!-- y-axis: $0 at y=420, $1.00 at y=140 (280 px tall, 70 per $0.25) -->
+  <g class="axis">
+    <line x1="140" y1="140" x2="140" y2="420"/>
+    <line x1="140" y1="420" x2="1140" y2="420"/>
+  </g>
+  <g class="axl">
+    <text x="80"  y="425">$0.00</text>
+    <text x="80"  y="355">$0.25</text>
+    <text x="80"  y="285">$0.50</text>
+    <text x="80"  y="215">$0.75</text>
+    <text x="80"  y="145">$1.00</text>
+  </g>
+  <g stroke="#1e293b" stroke-dasharray="4 4">
+    <line x1="140" y1="355" x2="1140" y2="355"/>
+    <line x1="140" y1="285" x2="1140" y2="285"/>
+    <line x1="140" y1="215" x2="1140" y2="215"/>
+    <line x1="140" y1="145" x2="1140" y2="145"/>
+  </g>
+
+  <!-- A column: budget=$1.00; bar covers $0 to $1.00 -->
+  <g transform="translate(220,0)">
+    <rect x="0" y="140" width="200" height="280" fill="url(#barA)" rx="10"/>
+    <rect x="0" y="140" width="200" height="6" fill="#bae6fd"/>
+    <text x="100" y="118" text-anchor="middle" class="lbl">A &#183; budget $1.00</text>
+    <text x="100" y="442" text-anchor="middle" class="lblSub">used $0.05  &#183;  remaining $0.95</text>
+    <rect x="40" y="454" width="120" height="22" rx="11" fill="#064e3b" stroke="#10b981"/>
+    <text x="76" y="469" class="pillG">unaffected</text>
+    <use href="#okSm" x="138" y="458"/>
+  </g>
+
+  <!-- B column: sub-budget=$0.50 carved from A -->
+  <g transform="translate(500,0)">
+    <rect x="0" y="285" width="200" height="135" fill="url(#barB)" rx="10"/>
+    <rect x="0" y="285" width="200" height="6" fill="#a5f3fc"/>
+    <text x="100" y="118" text-anchor="middle" class="lbl">B &#183; sub-budget $0.50</text>
+    <text x="100" y="272" text-anchor="middle" class="lblSub">carved from A</text>
+    <text x="100" y="442" text-anchor="middle" class="lblSub">used $0.13  &#183;  remaining $0.37</text>
+    <rect x="40" y="454" width="120" height="22" rx="11" fill="#064e3b" stroke="#10b981"/>
+    <text x="76" y="469" class="pillG">on budget</text>
+    <use href="#okSm" x="138" y="458"/>
+  </g>
+
+  <!-- C column: sub-budget=$0.20, used $0.33 → overrun -->
+  <g transform="translate(780,0)">
+    <!-- in-budget portion: $0 to $0.20 -->
+    <rect x="0" y="364" width="200" height="56" fill="url(#barC)" rx="10"/>
+    <rect x="0" y="364" width="200" height="6" fill="#fde68a"/>
+    <!-- overrun portion: $0.20 to $0.33 (37 px tall above the cap) -->
+    <rect x="0" y="327" width="200" height="37" fill="url(#overrun)" rx="6">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="100" y="118" text-anchor="middle" class="lbl">C &#183; sub-budget $0.20</text>
+    <text x="100" y="272" text-anchor="middle" class="lblSub">carved from B</text>
+    <text x="100" y="442" text-anchor="middle" class="lblSub">
+      <tspan>used $0.33  &#183;  </tspan><tspan fill="#fecaca">+$0.13 overrun</tspan>
+    </text>
+    <rect x="30" y="454" width="140" height="22" rx="11" fill="#450a0a" stroke="#ef4444"/>
+    <text x="100" y="469" text-anchor="middle" class="pillR">BudgetOverrun</text>
+  </g>
+
+  <!-- Arrows: A→B→C (positioned to avoid bars and labels) -->
+  <g stroke="#94a3b8" stroke-width="2" fill="none">
+    <path d="M 420 220 C 460 220, 460 360, 500 360" marker-end="url(#arrowC)"/>
+    <path d="M 700 360 C 740 360, 740 380, 780 380" marker-end="url(#arrowC)"/>
+  </g>
+  <text x="440" y="200" class="sub" fill="#94a3b8">A&#8594;B</text>
+  <text x="722" y="346" class="sub" fill="#94a3b8">B&#8594;C</text>
 </svg>
