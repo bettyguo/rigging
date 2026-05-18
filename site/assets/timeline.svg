@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" width="1200" height="460" role="img" aria-label="Timeline of the agent infrastructure stack 2022 to 2026">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 460" width="1280" height="460" role="img" aria-label="Timeline of the agent infrastructure stack 2022 to 2026">
   <defs>
     <linearGradient id="ridge" x1="0" x2="1" y1="0" y2="0">
       <stop offset="0%"   stop-color="#1e40af"/>
@@ -14,75 +14,86 @@
       .h      { fill:#f1f5f9; font: 700 24px ui-sans-serif, system-ui, sans-serif; }
       .sub    { fill:#94a3b8; font: 13px ui-monospace, monospace; }
       .year   { fill:#fbbf24; font: 700 14px ui-monospace, monospace; }
+      .yearSm { fill:#fbbf24; font: 700 12px ui-monospace, monospace; }
       .yearNow{ fill:#fde68a; font: 700 16px ui-monospace, monospace; }
       .lbl    { fill:#f8fafc; font: 600 17px ui-sans-serif, system-ui, sans-serif; }
+      .lblSm  { fill:#f8fafc; font: 600 15px ui-sans-serif, system-ui, sans-serif; }
       .lblNow { fill:#fde68a; font: 800 22px ui-sans-serif, system-ui, sans-serif; }
       .desc   { fill:#cbd5e1; font: 12px ui-monospace, monospace; }
       .cap    { fill:#64748b; font: 13px ui-sans-serif, system-ui, sans-serif; }
     </style>
   </defs>
 
-  <rect width="1200" height="460" fill="#020617"/>
+  <rect width="1280" height="460" fill="#020617"/>
 
   <text x="40" y="44" class="h">The agent stack, named in chronological order.</text>
   <text x="40" y="68" class="sub">Each layer was open-coded by every team until someone gave it a name.</text>
 
-  <!-- timeline line — solid bright underlay so it stays visible if a renderer chokes on the gradient -->
-  <line x1="100" y1="220" x2="1100" y2="220" stroke="#1e40af" stroke-width="5" opacity="0.7"/>
-  <line x1="100" y1="220" x2="1100" y2="220" stroke="url(#ridge)" stroke-width="3"/>
+  <!-- timeline rail -->
+  <line x1="100" y1="220" x2="1180" y2="220" stroke="#1e40af" stroke-width="5" opacity="0.7"/>
+  <line x1="100" y1="220" x2="1180" y2="220" stroke="url(#ridge)" stroke-width="3"/>
 
   <!-- 2022 — model -->
   <g>
     <circle cx="160" cy="220" r="9" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
     <text x="160" y="180" text-anchor="middle" class="year">2022</text>
-    <text x="160" y="260" text-anchor="middle" class="lbl">model</text>
-    <text x="160" y="282" text-anchor="middle" class="desc">an inference call</text>
-    <text x="160" y="300" text-anchor="middle" class="desc">no loop, no tools</text>
+    <text x="160" y="262" text-anchor="middle" class="lblSm">model</text>
+    <text x="160" y="284" text-anchor="middle" class="desc">an inference call</text>
+    <text x="160" y="302" text-anchor="middle" class="desc">no loop, no tools</text>
   </g>
 
   <!-- 2023 — tools -->
   <g>
-    <circle cx="350" cy="220" r="9" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-    <text x="350" y="180" text-anchor="middle" class="year">2023</text>
-    <text x="350" y="260" text-anchor="middle" class="lbl">tools</text>
-    <text x="350" y="282" text-anchor="middle" class="desc">function-calling</text>
-    <text x="350" y="300" text-anchor="middle" class="desc">bespoke per provider</text>
+    <circle cx="330" cy="220" r="9" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+    <text x="330" y="180" text-anchor="middle" class="year">2023</text>
+    <text x="330" y="262" text-anchor="middle" class="lblSm">tools</text>
+    <text x="330" y="284" text-anchor="middle" class="desc">function-calling</text>
+    <text x="330" y="302" text-anchor="middle" class="desc">bespoke per provider</text>
   </g>
 
-  <!-- 2024 — MCP · harness -->
+  <!-- 2024 — MCP -->
   <g>
-    <circle cx="540" cy="220" r="9" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
-    <text x="540" y="180" text-anchor="middle" class="year">2024</text>
-    <text x="540" y="260" text-anchor="middle" class="lbl">MCP &#183; harness</text>
-    <text x="540" y="282" text-anchor="middle" class="desc">tool wire format</text>
-    <text x="540" y="300" text-anchor="middle" class="desc">agent loop named</text>
+    <circle cx="500" cy="220" r="9" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="500" y="180" text-anchor="middle" class="year">2024</text>
+    <text x="500" y="262" text-anchor="middle" class="lblSm">MCP</text>
+    <text x="500" y="284" text-anchor="middle" class="desc">tool wire format</text>
+    <text x="500" y="302" text-anchor="middle" class="desc">named (Anthropic)</text>
   </g>
 
   <!-- 2025 — A2A · supervisors -->
   <g>
-    <circle cx="740" cy="220" r="9" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
-    <text x="740" y="180" text-anchor="middle" class="year">2025</text>
-    <text x="740" y="260" text-anchor="middle" class="lbl">A2A &#183; supervisors</text>
-    <text x="740" y="282" text-anchor="middle" class="desc">agent-to-agent wire</text>
-    <text x="740" y="300" text-anchor="middle" class="desc">in-domain routing</text>
+    <circle cx="700" cy="220" r="9" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+    <text x="700" y="180" text-anchor="middle" class="year">2025</text>
+    <text x="700" y="262" text-anchor="middle" class="lblSm">A2A &#183; supervisors</text>
+    <text x="700" y="284" text-anchor="middle" class="desc">agent-to-agent wire</text>
+    <text x="700" y="302" text-anchor="middle" class="desc">in-domain routing</text>
   </g>
 
-  <!-- 2026 — Rigging (emphasised) -->
+  <!-- early 2026 — harness (the layer below Rigging just got named) -->
   <g>
-    <circle cx="1000" cy="220" r="60" fill="url(#nowGlow)"/>
-    <circle cx="1000" cy="220" r="16" fill="#0c4a6e" stroke="#fbbf24" stroke-width="3">
+    <circle cx="910" cy="220" r="9" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+    <text x="910" y="180" text-anchor="middle" class="yearSm">early 2026</text>
+    <text x="910" y="262" text-anchor="middle" class="lblSm">harness</text>
+    <text x="910" y="284" text-anchor="middle" class="desc">agent loop named</text>
+    <text x="910" y="302" text-anchor="middle" class="desc">single-agent runtime</text>
+  </g>
+
+  <!-- now (2026) — Rigging (emphasised, glowing) -->
+  <g>
+    <circle cx="1130" cy="220" r="60" fill="url(#nowGlow)"/>
+    <circle cx="1130" cy="220" r="16" fill="#0c4a6e" stroke="#fbbf24" stroke-width="3">
       <animate attributeName="r" values="14;18;14" dur="2.4s" repeatCount="indefinite"/>
     </circle>
-    <text x="1000" y="174" text-anchor="middle" class="yearNow">2026</text>
-    <text x="1000" y="268" text-anchor="middle" class="lblNow">Rigging</text>
-    <text x="1000" y="292" text-anchor="middle" class="desc">cross-domain composition</text>
-    <text x="1000" y="310" text-anchor="middle" class="desc">cards &#183; contracts &#183; blame</text>
+    <text x="1130" y="174" text-anchor="middle" class="yearNow">now &#183; 2026</text>
+    <text x="1130" y="270" text-anchor="middle" class="lblNow">Rigging</text>
+    <text x="1130" y="293" text-anchor="middle" class="desc">cross-domain composition</text>
+    <text x="1130" y="311" text-anchor="middle" class="desc">cards &#183; contracts &#183; blame</text>
   </g>
 
   <!-- caption — multi-line tspan so it never overflows -->
-  <text x="40" y="368" class="cap">
-    <tspan x="40" dy="0">The model was named first. Then the tool surface. Then the agent loop.</tspan>
-    <tspan x="40" dy="1.5em">Then the agent-to-agent wire. The layer that comes next &#8212; the typed coupling</tspan>
-    <tspan x="40" dy="1.5em">across trust domains &#8212; needs a name too. <tspan fill="#fde68a" font-weight="700">That layer is rigging.</tspan></tspan>
+  <text x="40" y="378" class="cap">
+    <tspan x="40" dy="0">The model was named first. Then the tool surface. Then the tool wire (MCP).</tspan>
+    <tspan x="40" dy="1.5em">Then the agent-to-agent wire (A2A). The agent loop itself just got its name (harness).</tspan>
+    <tspan x="40" dy="1.5em">The layer above all of those &#8212; the typed coupling across trust domains &#8212; <tspan fill="#fde68a" font-weight="700">is rigging.</tspan></tspan>
   </text>
 </svg>

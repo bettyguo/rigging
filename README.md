@@ -204,7 +204,7 @@ blame ▶ did:rig:9rT…qN2    (worker)
 Every layer in the agent stack was open-coded by every team before it had a name. Each named layer is two years older than the one above it. The next layer — typed coupling across trust domains — is due.
 
 <p align="center">
-  <img src="./assets/timeline.svg" alt="2022 model · 2023 tools · 2024 MCP & harness · 2025 A2A & supervisors · 2026 Rigging" width="100%"/>
+  <img src="./assets/timeline.svg" alt="2022 model · 2023 tools · 2024 MCP · 2025 A2A & supervisors · early-2026 harness · 2026 Rigging" width="100%"/>
 </p>
 
 > The model was named first. Then the tool surface. Then the agent loop. Then the agent-to-agent wire. The layer that comes next — the typed coupling across trust domains — needs a name too. **That layer is rigging.**
